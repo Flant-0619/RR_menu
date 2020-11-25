@@ -19,6 +19,7 @@ function CreateRect(){
     top: 80,
     width: 80,
     height: 80,
+    snapAngle: 5,
     fill: 'orangered',
   });
   canvasA.add(rect[Rect_number]).setActiveObject(rect[Rect_number]);
@@ -34,6 +35,7 @@ function CreateCircle(){
     top: 50,
     fill: 'blue',
     radius: 30,
+    snapAngle: 5,
     //name : Object_cnt
   });
   canvasA.add(circle[Circle_number]).setActiveObject(circle[Circle_number]);;
@@ -51,6 +53,7 @@ function CreateText(){
     fontSize: 16,
     textAlign: 'center',
     fixedWidth: 150,
+    snapAngle: 5,
     //name : Object_cnt
   });
   canvasA.add(text[Text_number]).setActiveObject(text[Text_number]);;
@@ -74,7 +77,7 @@ canvasA.on('selection:updated', function(e){
 
 function CreateTwitter(){
   twitter[Twitter_number] = new fabric.Image.fromURL('twitter.png',function(oImg){
-    oImg.set({id: Object_cnt, left:80, top:80});
+    oImg.set({id: Object_cnt, left:80, top:80, snapAngle: 5});
     oImg.scale(0.1);
     canvasA.add(oImg).setActiveObject(oImg);
   });
