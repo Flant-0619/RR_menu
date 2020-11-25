@@ -118,6 +118,7 @@
       var link_data = [];
       var cnt = 0;
       var Select;
+      const default_canvas_size = 600;
       </script>
 
     <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
@@ -161,7 +162,7 @@
             bool = false;
           }else{
             //bool = canvasA.add("newImg");
-            canvasA.setBackgroundImage(Grid_Img, canvasA.renderAll.bind(canvasA));
+            canvasA.setBackgroundImage(Grid_Img, canvasA.renderAll.bind(canvasA),{left : -300, top : -300});
             bool = true;
           }
         });
