@@ -116,7 +116,6 @@
     <canvas hidden id="Startup_canvas" width="1400" height="1400" style="border:1px solid;"></canvas>
     <script type = "text/javascript">
       var link_data = [];
-      var cnt = 0;
       var Select;
       const default_canvas_size = 600;
       </script>
@@ -127,7 +126,7 @@
     <script type = "text/javascript">var canvasC = new fabric.Canvas('canvasC',{preserveObjectStacking: true});</script>
     <script type = "text/javascript">
     document.getElementById("Startup_canvas").style.display="none";
-    var canvasB = new fabric.Canvas('Startup_canvas');
+    var Startupcanvas = new fabric.Canvas('Startup_canvas');
     </script>
     <script src="create.js"></script>
     <script src="grid.js"></script>
@@ -145,45 +144,44 @@
     <script src= "font.js"></script>
     <script>
 
-      var tempCanvas;
       var bool = true;
-      Grid_Img = Startup(canvasB);
+      Grid_Img = Startup(Startupcanvas);
       var canvas_size = 600;
       var tmp_undo = [];
       var save = document.getElementById('save');
-
+      var Work_canvas = canvasA;
       $(function(){
   //トグルボタン定義
         $("#checkbox1").button();
         $("#checkbox1").click(function(){
           var a = $("#checkbox1").prop("checked");
           if(a){
-            canvasA.setBackgroundImage(null, canvasA.renderAll.bind(canvasA));
+            Work_canvas.setBackgroundImage(null, Work_canvas.renderAll.bind(Work_canvas));
             bool = false;
           }else{
-            //bool = canvasA.add("newImg");
-            canvasA.setBackgroundImage(Grid_Img, canvasA.renderAll.bind(canvasA),{left : -300, top : -300});
+            //bool = Work_canvas.add("newImg");
+            Work_canvas.setBackgroundImage(Grid_Img, Work_canvas.renderAll.bind(Work_canvas),{left : -300, top : -300});
             bool = true;
           }
         });
       });
-      canvasA.on('selection:created', function(options) {
-        tmp_undo.push(canvasA.toDatalessJSON());
+      Work_canvas.on('selection:created', function(options) {
+        tmp_undo.push(Work_canvas.toDatalessJSON());
         document.getElementById("position_left").value = Select.left;
         document.getElementById("position_top").value = Select.top;
       });
-      canvasA.on('object:modified', function(option){
+      Work_canvas.on('object:modified', function(option){
         undo.push(tmp_undo.pop());
         redo = [];
-        tmp_undo.push(canvasA.toDatalessJSON());
+        tmp_undo.push(Work_canvas.toDatalessJSON());
         document.getElementById("position_left").value = Select.left;
         document.getElementById("position_top").value = Select.top;
       })  
-      canvasA.on('selection:updated', function(option){
+      Work_canvas.on('selection:updated', function(option){
         document.getElementById("position_left").value = Select.left;
         document.getElementById("position_top").value = Select.top;
       })
-      canvasA.on('object:moving', function(options) { 
+      Work_canvas.on('object:moving', function(options) { 
         if(bool == true){
         options.target.set({
           left: Math.round(options.target.left / Smallgrid) * Smallgrid,
@@ -191,7 +189,7 @@
         });
         }
       });
-      canvasA.on('object:moving', function(options) { 
+      Work_canvas.on('object:moving', function(options) { 
         if(Select.left <= 0)
           options.target.set({left:0});
         if(Select.top <= 0)
@@ -201,7 +199,7 @@
         if(Select.top + (Select.height * Select.scaleY) >= canvas_size)
           options.target.set({top:canvas_size - (Select.height * Select.scaleY)});
       });
-      canvasA.on('object:scaling', options => {
+      Work_canvas.on('object:scaling', options => {
         if(bool == true){
           var target = options.target,
           ww = (target.width / 10);
