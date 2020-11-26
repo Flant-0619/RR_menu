@@ -1,30 +1,30 @@
-function Remove_Object(){
-  Select = (canvasA.getActiveObject());
+function Remove_Object(Work_canvas){
+  Select = (Work_canvas.getActiveObject());
   console.log(Select);
   try{
       if(Select._objects.length > 1){
       Select._objects.forEach(function (object, key){
-        canvasA.remove(object);
+        Work_canvas.remove(object);
       });
-      canvasA.discardActiveObject();
-      canvasA.renderAll();
+      Work_canvas.discardActiveObject();
+      Work_canvas.renderAll();
     }
   }
   catch{
-    canvasA.remove(Select);
+    Work_canvas.remove(Select);
   }
 }
-function Remove_All_Object() {
-  var objects = canvasA.getObjects('rect');
+function Remove_All_Object(Work_canvas) {
+  var objects = Work_canvas.getObjects('rect');
   for (let i in objects) {
-    canvasA.remove(objects[i]);
+    Work_canvas.remove(objects[i]);
   }
-  objects = canvasA.getObjects('circle');
+  objects = Work_canvas.getObjects('circle');
   for (let i in objects) {
-    canvasA.remove(objects[i]);
+    Work_canvas.remove(objects[i]);
   }
-  objects = canvasA.getObjects('itext');
+  objects = Work_canvas.getObjects('itext');
   for (let i in objects) {
-    canvasA.remove(objects[i]);
+    Work_canvas.remove(objects[i]);
   }
 }

@@ -1,11 +1,11 @@
 var elem8 = document.getElementById("back");
 var elem9 = document.getElementById("rback");
 
-function Back_to_screen() {
+function Back_to_screen(Work_canvas) {
     if(undo.length != 0){
         redo.push(canvasA.toDatalessJSON());
         console.log("山田孝之");
-        canvasA.loadFromJSON(undo.pop());
+        Work_canvas.loadFromJSON(undo.pop());
         if (undo.length == 0){
             elem8.disabled = true;
         }
@@ -17,7 +17,7 @@ function Back_to_screen() {
 function Send_to_screen(){
     if(redo.length != 0){
         undo.push(canvasA.toDatalessJSON());
-        canvasA.loadFromJSON(redo.pop());
+        Work_canvas.loadFromJSON(redo.pop());
         console.log("hoge");
     }
     if (redo.length == 0){
