@@ -11,7 +11,7 @@
     <!-- メニューバー -->
     <header>
       <from>
-        <select id = "pzoom" onchange="CallPCanvasZoomMethod()">
+        <select id = "pzoom" onchange="CallPCanvasZoomMethod(Work_canvas)">
           <option value="kobetu" id = "kobe" disabled>フォント表示</option>
           <option value="50%" id = "font0">50%</option>
           <option value="75%" id = "font1">75%</option>
@@ -19,14 +19,14 @@
           <option value="125%" id = "font3">125%</option>
           <option value="150%" id = "font4">150%</option>
         </select>
-        <input type = "button" value = "拡大" id = "font6" onclick = "CallCanvasZoomMethod('ZoomIn')">
-        <input type = "button" value = "縮小" id = "font7" onclick = "CallCanvasZoomMethod('ZoomOut')">
-        <input type = "button" value = "↩" id = "back" disabled onclick = "CallBack()">
-        <input type = "button" value = "↪" id = "rback" disabled onclick = "SendTo()">
-        <input type = "button" value = "削除" onclick = "CallRemoveMethod('Remove')">
-        <input type = "button" value = "全削除" onclick = "CallRemoveMethod('RemoveAll')">
+        <input type = "button" value = "拡大" id = "font6" onclick = "CallCanvasZoomMethod('ZoomIn', Work_canvas)">
+        <input type = "button" value = "縮小" id = "font7" onclick = "CallCanvasZoomMethod('ZoomOut', Work_canvas)">
+        <input type = "button" value = "↩" id = "back" disabled onclick = "CallBack(Work_canvas)">
+        <input type = "button" value = "↪" id = "rback" disabled onclick = "SendTo(Work_canvas)">
+        <input type = "button" value = "削除" onclick = "CallRemoveMethod('Remove', Work_canvas)">
+        <input type = "button" value = "全削除" onclick = "CallRemoveMethod('RemoveAll', Work_canvas)">
         <input type = "checkbox" id = "checkbox1" /><label for="checkbox1">グリッド線</label>
-        <input type = "button" id= "save" value = "保存" onclick = "CallSaveMethod()">
+        <input type = "button" id= "save" value = "保存" onclick = "CallSaveMethod(Work_canvas)">
       </from>
     </header>
     <!-- パーツウィンドウ -->
@@ -41,16 +41,16 @@
         <div class="tab_content" id="all_content">
           <h3 id="top">図形</h3></br>
           <from>
-            <input type = "image" value = "クリックして！" src = "orange_rect.png" onclick="CallCreateMethod('Rect')">
-            <input type = "image" value = "クリックして！" src = "red_circle.png" onclick="CallCreateMethod('Circle')"></br>
+            <input type = "image" value = "クリックして！" src = "orange_rect.png" onclick="CallCreateMethod('Rect', Work_canvas)">
+            <input type = "image" value = "クリックして！" src = "red_circle.png" onclick="CallCreateMethod('Circle', Work_canvas)"></br>
           </from>
           <h3 id="nomal">機能</h3></br>
           <from>
-            <input type = "image" value = "クリックして！" src = "twitter.png" onclick="CallCreateMethod('Twitter')" width="50" height="50"></br>
+            <input type = "image" value = "クリックして！" src = "twitter.png" onclick="CallCreateMethod('Twitter', Work_canvas)" width="50" height="50"></br>
           </from>
           <h3 id="nomal">テキスト</h3></br>
           <from>
-            <input type = "image" value = "クリックして！" src = "Text.png" onclick="CallCreateMethod('Text')">
+            <input type = "image" value = "クリックして！" src = "Text.png" onclick="CallCreateMethod('Text', Work_canvas)">
           </from>
         </div>
         <div class="tab_content" id="programming_content">
@@ -71,24 +71,24 @@
         <div class="edittab_content" id="editall_content">
           <from>
             フォント:</br>
-            <input type = "button" value = "Text変更" onclick = "CallChangeFont()"></br>
+            <input type = "button" value = "Text変更" onclick = "CallChangeFont(Work_canvas)"></br>
             カラー:</br>
             パーツの色:<input type = "color" id = "Diagram_color">
-            <input type = "button" value = "適用" onclick = "CallColorChange('Diagram')">
+            <input type = "button" value = "適用" onclick = "CallColorChange('Diagram', Work_canvas)">
             </br>
             フレーム色:<input type = "color" id = "Frame_color">
-            <input type = "button" value = "適用" onclick = "CallColorChange('Frame')">
+            <input type = "button" value = "適用" onclick = "CallColorChange('Frame', Work_canvas)">
             </br>
             配　置:</br>
-            <input type = "button" value = "前面へ" onclick = "CallMovelayerMethod('Top')">
-            <input type = "button" value = "背面へ" onclick = "CallMovelayerMethod('Bottom')"></br>
+            <input type = "button" value = "前面へ" onclick = "CallMovelayerMethod('Top', Work_canvas)">
+            <input type = "button" value = "背面へ" onclick = "CallMovelayerMethod('Bottom', Work_canvas)"></br>
             x軸:<input type = "number" id = "position_left" value = "0" onfocus="this.select();"></br>
             y軸:<input type = "number" id = "position_top" value = "0" onfocus="this.select();"></br>
-            <input type = "button" value = "適用" onclick = "Call_Position_Change()"></br>
+            <input type = "button" value = "適用" onclick = "Call_Position_Change(Work_canvas)"></br>
             サイズ:</br>
-            <input type = "button" value = "+20%" onclick = "CallObjectZoomMethod('ZoomIn')"> 
-            <input type = "button" value = "-20%" onclick = "CallObjectZoomMethod('ZoomOut')"></br>
-            <input type = "button" value = "Clone"onclick="CallCreateMethod('Clone')"></br>
+            <input type = "button" value = "+20%" onclick = "CallObjectZoomMethod('ZoomIn', Work_canvas)"> 
+            <input type = "button" value = "-20%" onclick = "CallObjectZoomMethod('ZoomOut', Work_canvas)"></br>
+            <input type = "button" value = "Clone"onclick="CallCreateMethod('Clone', Work_canvas)"></br>
             <input type = "file"> 
           </from>
         </div>
@@ -145,11 +145,11 @@
     <script>
 
       var bool = true;
-      Grid_Img = Startup(Startupcanvas);
+      var Work_canvas = canvasA;
+      Grid_Img = Startup(Work_canvas, Startupcanvas);
       var canvas_size = 600;
       var tmp_undo = [];
       var save = document.getElementById('save');
-      var Work_canvas = canvasA;
       $(function(){
   //トグルボタン定義
         $("#checkbox1").button();
