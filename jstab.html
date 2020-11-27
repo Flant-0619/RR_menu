@@ -11,6 +11,7 @@
     <!-- メニューバー -->
     <header>
       <from>
+        <input type = "button" value = "+" id = "addcanvas" onclick = "Call_Add_Canvas()">
         <select id = "pzoom" onchange="CallPCanvasZoomMethod(Work_canvas)">
           <option value="kobetu" id = "kobe" disabled>フォント表示</option>
           <option value="50%" id = "font0">50%</option>
@@ -102,16 +103,19 @@
     </aside>
     <!-- キャンバス -->
     <div class="canvastabs">
-      <input id="canvasall" type="radio" name="canvastab_item" checked>
-      <label class="canvastab_item" for="canvasall">キャンバス1</label>
-      <input id="canvasprogramming" type="radio" name="canvastab_item">
-      <label class="canvastab_item" for="canvasprogramming">キャンバス2</label>
-      <div class="canvastab_content" id="canvasall_content">
-        <canvas id="canvas" width="600" height="600" style="border:1px solid;"></canvas>
+      <script>
+        var Work_Canvas_List = []
+        
+        function Call_Add_Canvas(){
+          Work_Canvas_List.push(add_canvas())
+        }
+      </script>
+      <input id="canvas_input1" type="radio"  name="canvastab_item" onchange="Change_Work_Canvas(Work_Canvas_List[0])" checked>
+      <label class="canvastab_item" for="canvas_input1" id = "canvas_label1">キャンバス1</label>
+      <div class="canvastab_content" id="canvas1_content">
+        <canvas id="canvas1" width="600" height="600" style="border:1px solid;"></canvas>
       </div>
-      <div class="canvastab_content" id="canvasprogramming_content">
-        <canvas id="canvasC" width="600" height="600" style="border:1px solid;"></canvas>
-      </div>
+      
     </div>
     <canvas hidden id="Startup_canvas" width="1400" height="1400" style="border:1px solid;"></canvas>
     <script type = "text/javascript">
@@ -122,8 +126,7 @@
 
     <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
-    <script type = "text/javascript">var canvasA = new fabric.Canvas('canvas',{preserveObjectStacking: true});</script>
-    <script type = "text/javascript">var canvasC = new fabric.Canvas('canvasC',{preserveObjectStacking: true});</script>
+    <script id = fabriccanvasid1 type = "text/javascript">var fabriccanvas1 = new fabric.Canvas('canvas1',{preserveObjectStacking: true});</script>
     <script type = "text/javascript">
     document.getElementById("Startup_canvas").style.display="none";
     var Startupcanvas = new fabric.Canvas('Startup_canvas');
@@ -142,10 +145,13 @@
     <script src= "Obj_position.js"></script>
     <script src= "Color_Cange.js"></script>
     <script src= "font.js"></script>
+    <script src= "Add_Canvas.js"></script>
     <script>
 
       var bool = true;
-      var Work_canvas = canvasA;
+      var Work_canvas = fabriccanvas1;
+      Work_Canvas_List.push(fabriccanvas1);
+      console.log(Work_canvas);
       Grid_Img = Startup(Work_canvas, Startupcanvas);
       var canvas_size = 600;
       var tmp_undo = [];

@@ -66,8 +66,11 @@ input[name="canvastab_item"] {
 }
 
 /*選択されているタブのコンテンツのみを表示*/
-#canvasall:checked ~ #canvasall_content,
-#canvasprogramming:checked ~ #canvasprogramming_content{
+#canvas_input1:checked ~ #canvas1_content,
+#canvas_input2:checked ~ #canvas2_content,
+#canvas_input3:checked ~ #canvas3_content,
+#canvas_input4:checked ~ #canvas4_content,
+#canvas_input5:checked ~ #canvas5_content{
   display: block;
 }
 
@@ -255,16 +258,4 @@ input[name="edittab_item"] {
   font-size: 13px;
   text-align: center;
   margin:0 0 0 0px;
-}
-
-/* ボタン装飾 */
-input,button,select,optgroup,textarea {
-  line-height: 10px;
-}
-
-input {
-  padding: 6px 12px;
-  border-radius: 10px;
-  color: #495057;
-  border: 2px solid #ced4da;
 }

@@ -28,9 +28,9 @@ function CallCreateMethod(value, Work_canvas){
 function CallSaveMethod(Work_canvas){
   ret = confirm("この内容で保存しますか？");
   if (ret == true){
-    Work_canvas.setBackgroundImage(null, canvasA.renderAll.bind(canvasA));
+    //Work_canvas.setBackgroundImage(null, canvasA.renderAll.bind(canvasA));
     Save_SVG(Work_canvas);
-    Work_canvas.setBackgroundImage(Grid_Img, canvasA.renderAll.bind(canvasA),{left: -300, top : -300});
+    //Work_canvas.setBackgroundImage(Grid_Img, canvasA.renderAll.bind(canvasA),{left: -300, top : -300});
     var result = window.alert('保存が完了しました');
   }
 }
