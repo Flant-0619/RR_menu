@@ -200,10 +200,101 @@
           options.target.set({left:0});
         if(Select.top <= 0)
           options.target.set({top:0});
-        if(Select.left + (Select.width * Select.scaleX) >= canvas_size)
-          options.target.set({left:canvas_size - (Select.width * Select.scaleX)});
-        if(Select.top + (Select.height * Select.scaleY) >= canvas_size)
-          options.target.set({top:canvas_size - (Select.height * Select.scaleY)});
+          if(Select.angle == 0){
+          //角度が0のとき
+          if(Select.left <= 0){
+            //左
+            options.target.set({left:0});
+          }
+          if(Select.top <= 0){
+            //上
+            options.target.set({top:0});
+          }
+          if(Select.left + (Select.width * Select.scaleX) >= 600){
+            //右
+            options.target.set({left:600 - (Select.width * Select.scaleX)});
+          }
+          if(Select.top + (Select.height * Select.scaleY) >= 600){
+            //下
+            options.target.set({top:600 - (Select.height * Select.scaleY)});
+          }
+        }else if(Select.angle > 0 && Select.angle <= 90){
+          //角度が0-90のとき
+          var x = Select.angle * Math.PI / 180;
+          if(Select.left - Math.abs(Math.sin(x) * Select.height * Select.scaleY) <= 0){
+            //左
+            options.target.set({left:Math.abs(Math.sin(x) * Select.height * Select.scaleY)});
+          }
+          if(Select.top <= 0){
+            //上
+            options.target.set({top:0});
+          }
+          if(Select.left + Math.abs(Math.cos(x) * Select.width * Select.scaleX) >= 600){
+            //右
+            options.target.set({left:600 - Math.abs(Math.cos(x) * Select.width * Select.scaleX)})
+          }
+          if(Select.top + Math.abs(Math.sin(x) * Select.width * Select.scaleX + Math.cos(x) * Select.height * Select.scaleX) >= 600){
+            //下
+            options.target.set({top:600 - Math.abs(Math.sin(x) * Select.width * Select.scaleX + Math.cos(x) * Select.height * Select.scaleY)})
+          }
+        }else if(Select.angle > 90 && Select.angle <= 180){
+          //角度が90-180のとき
+          var x = (Select.angle - 90) * Math.PI / 180;
+          if(Select.left - Math.abs(Math.sin(x) * Select.width * Select.scaleX + Math.cos(x) * Select.height * Select.scaleX) <= 0){
+            //左
+            options.target.set({left:Math.abs(Math.sin(x) * Select.width * Select.scaleX + Math.cos(x) * Select.height * Select.scaleY)})
+          }
+          if(Select.top - Math.abs(Math.sin(x) * Select.height * Select.scaleY) <= 0){
+            //上
+            options.target.set({top:Math.abs(Math.sin(x) * Select.height * Select.scaleY)});
+          }
+          if(Select.left >= 600){
+            //右
+            options.target.set({left:600});
+          }
+          if(Select.top + Math.abs(Math.cos(x) * Select.width * Select.scaleX) >= 600){
+            //下
+            options.target.set({top:600 - Math.abs(Math.cos(x) * Select.width * Select.scaleX)})
+          }
+        }else if(Select.angle > 180 && Select.angle <= 270){
+          //角度が180-270のとき
+          var x = (Select.angle - 180) * Math.PI / 180;
+          if(Select.left - Math.abs(Math.cos(x) * Select.width * Select.scaleX) <= 0){
+            //左
+            options.target.set({left:Math.abs(Math.cos(x) * Select.width * Select.scaleX)})
+          }
+          if(Select.top - Math.abs(Math.sin(x) * Select.width * Select.scaleX + Math.cos(x) * Select.height * Select.scaleX) <= 0 ){
+            //上
+            options.target.set({top:Math.abs(Math.sin(x) * Select.width * Select.scaleX + Math.cos(x) * Select.height * Select.scaleY)})
+          }
+          if(Select.left + Math.abs(Math.sin(x) * Select.height * Select.scaleY) >= 600){
+            //右
+            options.target.set({left:600 - Math.abs(Math.sin(x) * Select.height * Select.scaleY)});
+          }
+          if(Select.top >= 600){
+          //下
+            options.target.set({top:600});
+          }
+        }else{
+          //角度が270-360のとき
+          var x = (Select.angle - 270) * Math.PI / 180;
+          if(Select.left <= 0){
+            //左
+            options.target.set({left:0});
+          }
+          if(Select.top - Math.abs(Math.cos(x) * Select.width * Select.scaleX) <= 0){
+            //上
+            options.target.set({top:Math.abs(Math.cos(x) * Select.width * Select.scaleX)})
+          }
+          if(Select.left + Math.abs(Math.sin(x) * Select.width * Select.scaleX + Math.cos(x) * Select.height * Select.scaleX) >= 600){
+            //右
+            options.target.set({left:600 - Math.abs(Math.sin(x) * Select.width * Select.scaleX + Math.cos(x) * Select.height * Select.scaleY)})
+          }
+          if(Select.top + Math.abs(Math.sin(x) * Select.height * Select.scaleY) >= 600){
+            //下
+            options.target.set({top:600 - Math.abs(Math.sin(x) * Select.height * Select.scaleY)});
+          }
+        }
       });
       Work_canvas.on('object:scaling', options => {
         if(bool == true){
@@ -233,8 +324,8 @@
             top: target.top,
             left: target.left
           };
+          target.set(attrs);
         } 
-        target.set(attrs);
       });
     </script>
   </body>
