@@ -256,3 +256,15 @@ input[name="edittab_item"] {
   text-align: center;
   margin:0 0 0 0px;
 }
+
+/* ボタン装飾 */
+input,button,select,optgroup,textarea {
+  line-height: 10px;
+}
+
+input {
+  padding: 6px 12px;
+  border-radius: 10px;
+  color: #495057;
+  border: 2px solid #ced4da;
+}
