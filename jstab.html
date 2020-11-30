@@ -11,7 +11,8 @@
     <!-- メニューバー -->
     <header>
       <from>
-        <select id = "pzoom" onchange="CallPCanvasZoomMethod()">
+        <input type = "button" value = "+" id = "addcanvas" onclick = "Call_Add_Canvas()">
+        <select id = "pzoom" onchange="CallPCanvasZoomMethod(Work_canvas)">
           <option value="kobetu" id = "kobe" disabled>フォント表示</option>
           <option value="50%" id = "font0">50%</option>
           <option value="75%" id = "font1">75%</option>
@@ -19,14 +20,14 @@
           <option value="125%" id = "font3">125%</option>
           <option value="150%" id = "font4">150%</option>
         </select>
-        <input type = "button" value = "拡大" id = "font6" onclick = "CallCanvasZoomMethod('ZoomIn')">
-        <input type = "button" value = "縮小" id = "font7" onclick = "CallCanvasZoomMethod('ZoomOut')">
-        <input type = "button" value = "↩" id = "back" disabled onclick = "CallBack()">
-        <input type = "button" value = "↪" id = "rback" disabled onclick = "SendTo()">
-        <input type = "button" value = "削除" onclick = "CallRemoveMethod('Remove')">
-        <input type = "button" value = "全削除" onclick = "CallRemoveMethod('RemoveAll')">
+        <input type = "button" value = "拡大" id = "font6" onclick = "CallCanvasZoomMethod('ZoomIn', Work_canvas)">
+        <input type = "button" value = "縮小" id = "font7" onclick = "CallCanvasZoomMethod('ZoomOut', Work_canvas)">
+        <input type = "button" value = "↩" id = "back" disabled onclick = "CallBack(Work_canvas)">
+        <input type = "button" value = "↪" id = "rback" disabled onclick = "SendTo(Work_canvas)">
+        <input type = "button" value = "削除" onclick = "CallRemoveMethod('Remove', Work_canvas)">
+        <input type = "button" value = "全削除" onclick = "CallRemoveMethod('RemoveAll', Work_canvas)">
         <input type = "checkbox" id = "checkbox1" /><label for="checkbox1">グリッド線</label>
-        <input type = "button" id= "save" value = "保存" onclick = "CallSaveMethod()">
+        <input type = "button" id= "save" value = "保存" onclick = "CallSaveMethod(Work_canvas)">
       </from>
     </header>
     <!-- パーツウィンドウ -->
@@ -41,16 +42,16 @@
         <div class="tab_content" id="all_content">
           <h3 id="top">図形</h3></br>
           <from>
-            <input type = "image" value = "クリックして！" src = "orange_rect.png" onclick="CallCreateMethod('Rect')">
-            <input type = "image" value = "クリックして！" src = "red_circle.png" onclick="CallCreateMethod('Circle')"></br>
+            <input type = "image" value = "クリックして！" src = "orange_rect.png" onclick="CallCreateMethod('Rect', Work_canvas)">
+            <input type = "image" value = "クリックして！" src = "red_circle.png" onclick="CallCreateMethod('Circle', Work_canvas)"></br>
           </from>
           <h3 id="nomal">機能</h3></br>
           <from>
-            <input type = "image" value = "クリックして！" src = "twitter.png" onclick="CallCreateMethod('Twitter')" width="50" height="50"></br>
+            <input type = "image" value = "クリックして！" src = "twitter.png" onclick="CallCreateMethod('Twitter', Work_canvas)" width="50" height="50"></br>
           </from>
           <h3 id="nomal">テキスト</h3></br>
           <from>
-            <input type = "image" value = "クリックして！" src = "Text.png" onclick="CallCreateMethod('Text')">
+            <input type = "image" value = "クリックして！" src = "Text.png" onclick="CallCreateMethod('Text', Work_canvas)">
           </from>
         </div>
         <div class="tab_content" id="programming_content">
@@ -71,24 +72,24 @@
         <div class="edittab_content" id="editall_content">
           <from>
             フォント:</br>
-            <input type = "button" value = "Text変更" onclick = "CallChangeFont()"></br>
+            <input type = "button" value = "Text変更" onclick = "CallChangeFont(Work_canvas)"></br>
             カラー:</br>
             パーツの色:<input type = "color" id = "Diagram_color">
-            <input type = "button" value = "適用" onclick = "CallColorChange('Diagram')">
+            <input type = "button" value = "適用" onclick = "CallColorChange('Diagram', Work_canvas)">
             </br>
             フレーム色:<input type = "color" id = "Frame_color">
-            <input type = "button" value = "適用" onclick = "CallColorChange('Frame')">
+            <input type = "button" value = "適用" onclick = "CallColorChange('Frame', Work_canvas)">
             </br>
             配　置:</br>
-            <input type = "button" value = "前面へ" onclick = "CallMovelayerMethod('Top')">
-            <input type = "button" value = "背面へ" onclick = "CallMovelayerMethod('Bottom')"></br>
+            <input type = "button" value = "前面へ" onclick = "CallMovelayerMethod('Top', Work_canvas)">
+            <input type = "button" value = "背面へ" onclick = "CallMovelayerMethod('Bottom', Work_canvas)"></br>
             x軸:<input type = "number" id = "position_left" value = "0" onfocus="this.select();"></br>
             y軸:<input type = "number" id = "position_top" value = "0" onfocus="this.select();"></br>
-            <input type = "button" value = "適用" onclick = "Call_Position_Change()"></br>
+            <input type = "button" value = "適用" onclick = "Call_Position_Change(Work_canvas)"></br>
             サイズ:</br>
-            <input type = "button" value = "+20%" onclick = "CallObjectZoomMethod('ZoomIn')"> 
-            <input type = "button" value = "-20%" onclick = "CallObjectZoomMethod('ZoomOut')"></br>
-            <input type = "button" value = "Clone"onclick="CallCreateMethod('Clone')"></br>
+            <input type = "button" value = "+20%" onclick = "CallObjectZoomMethod('ZoomIn', Work_canvas)"> 
+            <input type = "button" value = "-20%" onclick = "CallObjectZoomMethod('ZoomOut', Work_canvas)"></br>
+            <input type = "button" value = "Clone"onclick="CallCreateMethod('Clone', Work_canvas)"></br>
             <input type = "file"> 
           </from>
         </div>
@@ -102,31 +103,33 @@
     </aside>
     <!-- キャンバス -->
     <div class="canvastabs">
-      <input id="canvasall" type="radio" name="canvastab_item" checked>
-      <label class="canvastab_item" for="canvasall">キャンバス1</label>
-      <input id="canvasprogramming" type="radio" name="canvastab_item">
-      <label class="canvastab_item" for="canvasprogramming">キャンバス2</label>
-      <div class="canvastab_content" id="canvasall_content">
-        <canvas id="canvas" width="600" height="600" style="border:1px solid;"></canvas>
+      <script>
+        var Work_Canvas_List = []
+        
+        function Call_Add_Canvas(){
+          Work_Canvas_List.push(add_canvas())
+        }
+      </script>
+      <input id="canvas_input1" type="radio"  name="canvastab_item" onchange="Change_Work_Canvas(Work_Canvas_List[0])" checked>
+      <label class="canvastab_item" for="canvas_input1" id = "canvas_label1">キャンバス1</label>
+      <div class="canvastab_content" id="canvas1_content">
+        <canvas id="canvas1" width="600" height="600" style="border:1px solid;"></canvas>
       </div>
-      <div class="canvastab_content" id="canvasprogramming_content">
-        <canvas id="canvasC" width="600" height="600" style="border:1px solid;"></canvas>
-      </div>
+      
     </div>
     <canvas hidden id="Startup_canvas" width="1400" height="1400" style="border:1px solid;"></canvas>
     <script type = "text/javascript">
       var link_data = [];
-      var cnt = 0;
       var Select;
+      const default_canvas_size = 600;
       </script>
 
     <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
-    <script type = "text/javascript">var canvasA = new fabric.Canvas('canvas',{preserveObjectStacking: true});</script>
-    <script type = "text/javascript">var canvasC = new fabric.Canvas('canvasC',{preserveObjectStacking: true});</script>
+    <script id = fabriccanvasid1 type = "text/javascript">var fabriccanvas1 = new fabric.Canvas('canvas1',{preserveObjectStacking: true});</script>
     <script type = "text/javascript">
     document.getElementById("Startup_canvas").style.display="none";
-    var canvasB = new fabric.Canvas('Startup_canvas');
+    var Startupcanvas = new fabric.Canvas('Startup_canvas');
     </script>
     <script src="create.js"></script>
     <script src="grid.js"></script>
@@ -142,47 +145,49 @@
     <script src= "Obj_position.js"></script>
     <script src= "Color_Cange.js"></script>
     <script src= "font.js"></script>
+    <script src= "Add_Canvas.js"></script>
     <script>
 
-      var tempCanvas;
       var bool = true;
-      Grid_Img = Startup(canvasB);
+      var Work_canvas = fabriccanvas1;
+      Work_Canvas_List.push(fabriccanvas1);
+      console.log(Work_canvas);
+      Grid_Img = Startup(Work_canvas, Startupcanvas);
       var canvas_size = 600;
       var tmp_undo = [];
       var save = document.getElementById('save');
-
       $(function(){
   //トグルボタン定義
         $("#checkbox1").button();
         $("#checkbox1").click(function(){
           var a = $("#checkbox1").prop("checked");
           if(a){
-            canvasA.setBackgroundImage(null, canvasA.renderAll.bind(canvasA));
+            Work_canvas.setBackgroundImage(null, Work_canvas.renderAll.bind(Work_canvas));
             bool = false;
           }else{
-            //bool = canvasA.add("newImg");
-            canvasA.setBackgroundImage(Grid_Img, canvasA.renderAll.bind(canvasA));
+            //bool = Work_canvas.add("newImg");
+            Work_canvas.setBackgroundImage(Grid_Img, Work_canvas.renderAll.bind(Work_canvas),{left : -300, top : -300});
             bool = true;
           }
         });
       });
-      canvasA.on('selection:created', function(options) {
-        tmp_undo.push(canvasA.toDatalessJSON());
+      Work_canvas.on('selection:created', function(options) {
+        tmp_undo.push(Work_canvas.toDatalessJSON());
         document.getElementById("position_left").value = Select.left;
         document.getElementById("position_top").value = Select.top;
       });
-      canvasA.on('object:modified', function(option){
+      Work_canvas.on('object:modified', function(option){
         undo.push(tmp_undo.pop());
         redo = [];
-        tmp_undo.push(canvasA.toDatalessJSON());
+        tmp_undo.push(Work_canvas.toDatalessJSON());
         document.getElementById("position_left").value = Select.left;
         document.getElementById("position_top").value = Select.top;
       })  
-      canvasA.on('selection:updated', function(option){
+      Work_canvas.on('selection:updated', function(option){
         document.getElementById("position_left").value = Select.left;
         document.getElementById("position_top").value = Select.top;
       })
-      canvasA.on('object:moving', function(options) { 
+      Work_canvas.on('object:moving', function(options) { 
         if(bool == true){
         options.target.set({
           left: Math.round(options.target.left / Smallgrid) * Smallgrid,
@@ -190,21 +195,116 @@
         });
         }
       });
-      canvasA.on('object:moving', function(options) { 
+      Work_canvas.on('object:moving', function(options) { 
         if(Select.left <= 0)
           options.target.set({left:0});
         if(Select.top <= 0)
           options.target.set({top:0});
-        if(Select.left + (Select.width * Select.scaleX) >= canvas_size)
-          options.target.set({left:canvas_size - (Select.width * Select.scaleX)});
-        if(Select.top + (Select.height * Select.scaleY) >= canvas_size)
-          options.target.set({top:canvas_size - (Select.height * Select.scaleY)});
+          if(Select.angle == 0){
+          //角度が0のとき
+          if(Select.left <= 0){
+            //左
+            options.target.set({left:0});
+          }
+          if(Select.top <= 0){
+            //上
+            options.target.set({top:0});
+          }
+          if(Select.left + (Select.width * Select.scaleX) >= 600){
+            //右
+            options.target.set({left:600 - (Select.width * Select.scaleX)});
+          }
+          if(Select.top + (Select.height * Select.scaleY) >= 600){
+            //下
+            options.target.set({top:600 - (Select.height * Select.scaleY)});
+          }
+        }else if(Select.angle > 0 && Select.angle <= 90){
+          //角度が0-90のとき
+          var x = Select.angle * Math.PI / 180;
+          if(Select.left - Math.abs(Math.sin(x) * Select.height * Select.scaleY) <= 0){
+            //左
+            options.target.set({left:Math.abs(Math.sin(x) * Select.height * Select.scaleY)});
+          }
+          if(Select.top <= 0){
+            //上
+            options.target.set({top:0});
+          }
+          if(Select.left + Math.abs(Math.cos(x) * Select.width * Select.scaleX) >= 600){
+            //右
+            options.target.set({left:600 - Math.abs(Math.cos(x) * Select.width * Select.scaleX)})
+          }
+          if(Select.top + Math.abs(Math.sin(x) * Select.width * Select.scaleX + Math.cos(x) * Select.height * Select.scaleX) >= 600){
+            //下
+            options.target.set({top:600 - Math.abs(Math.sin(x) * Select.width * Select.scaleX + Math.cos(x) * Select.height * Select.scaleY)})
+          }
+        }else if(Select.angle > 90 && Select.angle <= 180){
+          //角度が90-180のとき
+          var x = (Select.angle - 90) * Math.PI / 180;
+          if(Select.left - Math.abs(Math.sin(x) * Select.width * Select.scaleX + Math.cos(x) * Select.height * Select.scaleX) <= 0){
+            //左
+            options.target.set({left:Math.abs(Math.sin(x) * Select.width * Select.scaleX + Math.cos(x) * Select.height * Select.scaleY)})
+          }
+          if(Select.top - Math.abs(Math.sin(x) * Select.height * Select.scaleY) <= 0){
+            //上
+            options.target.set({top:Math.abs(Math.sin(x) * Select.height * Select.scaleY)});
+          }
+          if(Select.left >= 600){
+            //右
+            options.target.set({left:600});
+          }
+          if(Select.top + Math.abs(Math.cos(x) * Select.width * Select.scaleX) >= 600){
+            //下
+            options.target.set({top:600 - Math.abs(Math.cos(x) * Select.width * Select.scaleX)})
+          }
+        }else if(Select.angle > 180 && Select.angle <= 270){
+          //角度が180-270のとき
+          var x = (Select.angle - 180) * Math.PI / 180;
+          if(Select.left - Math.abs(Math.cos(x) * Select.width * Select.scaleX) <= 0){
+            //左
+            options.target.set({left:Math.abs(Math.cos(x) * Select.width * Select.scaleX)})
+          }
+          if(Select.top - Math.abs(Math.sin(x) * Select.width * Select.scaleX + Math.cos(x) * Select.height * Select.scaleX) <= 0 ){
+            //上
+            options.target.set({top:Math.abs(Math.sin(x) * Select.width * Select.scaleX + Math.cos(x) * Select.height * Select.scaleY)})
+          }
+          if(Select.left + Math.abs(Math.sin(x) * Select.height * Select.scaleY) >= 600){
+            //右
+            options.target.set({left:600 - Math.abs(Math.sin(x) * Select.height * Select.scaleY)});
+          }
+          if(Select.top >= 600){
+          //下
+            options.target.set({top:600});
+          }
+        }else{
+          //角度が270-360のとき
+          var x = (Select.angle - 270) * Math.PI / 180;
+          if(Select.left <= 0){
+            //左
+            options.target.set({left:0});
+          }
+          if(Select.top - Math.abs(Math.cos(x) * Select.width * Select.scaleX) <= 0){
+            //上
+            options.target.set({top:Math.abs(Math.cos(x) * Select.width * Select.scaleX)})
+          }
+          if(Select.left + Math.abs(Math.sin(x) * Select.width * Select.scaleX + Math.cos(x) * Select.height * Select.scaleX) >= 600){
+            //右
+            options.target.set({left:600 - Math.abs(Math.sin(x) * Select.width * Select.scaleX + Math.cos(x) * Select.height * Select.scaleY)})
+          }
+          if(Select.top + Math.abs(Math.sin(x) * Select.height * Select.scaleY) >= 600){
+            //下
+            options.target.set({top:600 - Math.abs(Math.sin(x) * Select.height * Select.scaleY)});
+          }
+        }
       });
-      canvasA.on('object:scaling', options => {
+      Work_canvas.on('object:scaling', options => {
         if(bool == true){
           var target = options.target,
-          w = target.width * target.scaleX,
-          h = target.height * target.scaleY,
+          ww = (target.width / 10);
+          hh = (target.height / 10);
+          target.scaleX = (Math.round(target.scaleX * ww)) / ww;
+          target.scaleY = (Math.round(target.scaleY * hh)) / hh;
+          w = Math.round(target.width * target.scaleX),
+          h = Math.round(target.height * target.scaleY),
           snap = { // Closest snapping points
             top: Math.round(target.top / Smallgrid) * Smallgrid,
             left: Math.round(target.left / Smallgrid) * Smallgrid,
@@ -224,76 +324,8 @@
             top: target.top,
             left: target.left
           };
-          switch (target.__corner) {
-            case 'tl':
-              if (dist.left < dist.top && dist.left < threshold) {
-                attrs.scaleX = (w - (snap.left - target.left)) / target.width;
-                attrs.scaleY = (attrs.scaleX / target.scaleX) * target.scaleY;
-                attrs.top = target.top + (h - target.height * attrs.scaleY);
-                attrs.left = snap.left;
-              } else if (dist.top < threshold) {
-                attrs.scaleY = (h - (snap.top - target.top)) / target.height;
-                attrs.scaleX = (attrs.scaleY / target.scaleY) * target.scaleX;
-                attrs.left = attrs.left + (w - target.width * attrs.scaleX);
-                attrs.top = snap.top;
-              }
-              break;
-            case 'mt':
-              if (dist.top < threshold) {
-                attrs.scaleY = (h - (snap.top - target.top)) / target.height;
-                attrs.top = snap.top;
-              }
-              break;
-            case 'tr':
-              if (dist.right < dist.top && dist.right < threshold) {
-                attrs.scaleX = (snap.right - target.left) / target.width;
-                attrs.scaleY = (attrs.scaleX / target.scaleX) * target.scaleY;
-                attrs.top = target.top + (h - target.height * attrs.scaleY);
-              } else if (dist.top < threshold) {
-                attrs.scaleY = (h - (snap.top - target.top)) / target.height;
-                attrs.scaleX = (attrs.scaleY / target.scaleY) * target.scaleX;
-                attrs.top = snap.top;
-              }
-              break;
-            case 'ml':
-              if (dist.left < 40) {
-                attrs.scaleX = (w - (snap.left - target.left)) / target.width;
-                attrs.left = snap.left;
-              }
-              break;
-            case 'mr':
-              if (dist.right < threshold) {
-                attrs.scaleX = (snap.right - target.left) / target.width;
-              }
-              break;
-            case 'bl':
-              if (dist.left < dist.bottom && dist.left < threshold) {
-                attrs.scaleX = (w - (snap.left - target.left)) / target.width;
-                attrs.scaleY = (attrs.scaleX / target.scaleX) * target.scaleY;
-                attrs.left = snap.left;
-              } else if (dist.bottom < threshold) {
-                attrs.scaleY = (snap.bottom - target.top) / target.height;
-                attrs.scaleX = (attrs.scaleY / target.scaleY) * target.scaleX;
-                attrs.left = attrs.left + (w - target.width * attrs.scaleX);
-              }
-              break;
-            case 'mb':
-              if (dist.bottom < threshold) {
-                attrs.scaleY = (snap.bottom - target.top) / target.height;
-              }
-              break;
-            case 'br':
-              if (dist.right < dist.bottom && dist.right < threshold) {
-                attrs.scaleX = (snap.right - target.left) / target.width;
-                attrs.scaleY = (attrs.scaleX / target.scaleX) * target.scaleY;
-              } else if (dist.bottom < threshold) {
-                attrs.scaleY = (snap.bottom - target.top) / target.height;
-                attrs.scaleX = (attrs.scaleY / target.scaleY) * target.scaleX;
-              }
-              break;
-          }
+          target.set(attrs);
         } 
-        target.set(attrs);
       });
     </script>
   </body>

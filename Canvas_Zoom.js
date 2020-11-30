@@ -11,15 +11,15 @@ var elem5 = document.getElementById("kobe");
 var elem6 = document.getElementById("font6");
 var elem7 = document.getElementById("font7");
  
-function Canvas_ZoomIn() {
+function Canvas_ZoomIn(Work_canvas) {
   elem7.disabled = false;
   if (zoom < 150) {
     zoom += zoomStep;
-    canvasA.setZoom(zoom / 100);
+    Work_canvas.setZoom(zoom / 100);
     elem5.innerHTML = zoom + "%";
     elem5.selected = true;
     canvas_size = default_canvas_size / (zoom / 100);
-    canvasA.renderAll();
+    Work_canvas.renderAll();
     if (zoom == 150){
       elem6.disabled = true;
     }
@@ -27,15 +27,15 @@ function Canvas_ZoomIn() {
   return canvas_size
 };
  
-function Canvas_ZoomOut(){
+function Canvas_ZoomOut(Work_canvas){
   elem6.disabled = false;
   if (zoom > 50) {
     zoom -= zoomStep;
-    canvasA.setZoom(zoom / 100);
+    Work_canvas.setZoom(zoom / 100);
     elem5.innerHTML = zoom + "%";
     elem5.selected = true;
     canvas_size = default_canvas_size / (zoom / 100);
-    canvasA.renderAll();
+    Work_canvas.renderAll();
     if (zoom == 50){
       elem7.disabled = true;
     }
@@ -43,10 +43,10 @@ function Canvas_ZoomOut(){
   return canvas_size
 };
  
-function PCZ_goju() {
+function PCZ_goju(Work_canvas) {
   elem6.disabled = false;
   if (zoom > 50) {
-    canvasA.setZoom(50 / 100);
+    Work_canvas.setZoom(50 / 100);
     zoom = 50;
     canvas_size = default_canvas_size / (zoom / 100);
     elem5.innerHTML = zoom + "%";
@@ -55,35 +55,34 @@ function PCZ_goju() {
   }
 };
  
-function PCZ_nago() {
-    canvasA.setZoom(75 / 100);
-    zoom = 75;
-    canvas_size = default_canvas_size / (zoom / 100);
-    elem5.innerHTML = zoom + "%";
-    elem5.selected = true;
+function PCZ_nago(Work_canvas) {
+  Work_canvas.setZoom(75 / 100);
+  zoom = 75;
+  canvas_size = default_canvas_size / (zoom / 100);
+  elem5.innerHTML = zoom + "%";
+  elem5.selected = true;
 };
  
-function PCZ_hyaku() {
- 
-    canvasA.setZoom(100 / 100);
-    zoom = 100;
-    canvas_size = default_canvas_size / (zoom / 100);
-    elem5.innerHTML = zoom + "%";
-    elem5.selected = true;
+function PCZ_hyaku(Work_canvas) {
+  Work_canvas.setZoom(100 / 100);
+  zoom = 100;
+  canvas_size = default_canvas_size / (zoom / 100);
+  elem5.innerHTML = zoom + "%";
+  elem5.selected = true;
 };
  
-function PCZ_hyanigo() {
-  canvasA.setZoom(125 / 100);
+function PCZ_hyanigo(Work_canvas) {
+  Work_canvas.setZoom(125 / 100);
   zoom = 125;
   canvas_size = default_canvas_size / (zoom / 100);
   elem5.innerHTML = zoom + "%";
   elem5.selected = true;
 };
  
-function PCZ_hyago() {
+function PCZ_hyago(Work_canvas) {
   elem7.disabled = false;
   if (zoom < 150) {
-  canvasA.setZoom(150 / 100);
+  Work_canvas.setZoom(150 / 100);
   zoom = 150;
   canvas_size = default_canvas_size / (zoom / 100);
   elem5.innerHTML = zoom + "%";

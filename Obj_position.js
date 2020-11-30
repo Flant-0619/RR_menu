@@ -1,4 +1,4 @@
-function Obj_position(){
+function Obj_position(Work_canvas){
   undo.push(canvasA.toDatalessJSON());
   redo = [];
   var left = document.getElementById("position_left");
@@ -27,5 +27,5 @@ function Obj_position(){
 
   console.log(parseInt(document.getElementById("position_left").value));
   console.log(parseInt(document.getElementById("position_top").value));
-  canvasA.renderAll();
+  Work_canvas.renderAll();
 }

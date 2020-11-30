@@ -1,5 +1,5 @@
-function CangeFont(){
-  var obj = canvasA.getActiveObject();
+function CangeFont(Work_canvas){
+  var obj = Work_canvas.getActiveObject();
   obj.fontFamily= "MS 明朝"
-  canvasA.renderAll();
+  canvasA.renderAll(Work_canvas);
 }
