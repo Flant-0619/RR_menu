@@ -271,3 +271,9 @@ input {
   color: #495057;
   border: 2px solid #ced4da;
 }
+
+img {
+  object-fit: cover;
+  width: 145px;
+  height: 100px;
+}

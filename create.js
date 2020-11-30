@@ -60,11 +60,20 @@ function CreateClone(Work_canvas) {
   shift = 10;
 });*/
 
-function CreateTwitter(Work_canvas){
-  Object_list[Object_cnt] = new fabric.Image.fromURL('twitter.png',function(oImg){
+function CreateTwitter(Work_canvas, img_name){
+  Object_list[Object_cnt] = new fabric.Image.fromURL(img_name,function(oImg){
     oImg.set({id: Object_cnt, left:80, top:80, snapAngle: 5});
     oImg.scale(0.1);
     Work_canvas.add(oImg).setActiveObject(oImg);
   });
   Object_cnt = Object_cnt + 1;
 }
+
+/*function CreateTwitter(Work_canvas){
+  Object_list[Object_cnt] = new fabric.Image.fromURL('twitter.png',function(oImg){
+    oImg.set({id: Object_cnt, left:80, top:80, snapAngle: 5});
+    oImg.scale(0.1);
+    Work_canvas.add(oImg).setActiveObject(oImg);
+  });
+  Object_cnt = Object_cnt + 1;
+}*/

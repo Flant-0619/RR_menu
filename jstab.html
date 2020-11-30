@@ -56,9 +56,19 @@
         </div>
         <div class="tab_content" id="programming_content">
             写真の内容がここに入ります
+            <img type = "image" src = "img/No181A.png" onclick = "CallCreateMethod('Twitter', Work_canvas,'img/No181A.png')">
+            <img type = "image" src = "img/No181B.png" onclick = "CallCreateMethod('Twitter', Work_canvas,'img/No181B.png')">
+            <img type = "image" src = "img/No182.png" onclick = "CallCreateMethod('Twitter', Work_canvas, 'img/No182.png')">
+            <img type = "image" src = "img/No183A.png" onclick = "CallCreateMethod('Twitter', Work_canvas, 'img/No183A.png')">
+            <img type = "image" src = "img/No183B.png" onclick = "CallCreateMethod('Twitter', Work_canvas, 'img/No183B.png')">
+            <img type = "image" src = "img/No184.png" onclick = "CallCreateMethod('Twitter', Work_canvas, 'img/No184.png')">
+            <img type = "image" src = "img/No186.png" onclick = "CallCreateMethod('Twitter', Work_canvas, 'img/No186.png')">
+            <img type = "image" src = "img/No187.png" onclick = "CallCreateMethod('Twitter', Work_canvas, 'img/No187.png')">
+            <img type = "image" src = "img/No188.png" onclick = "CallCreateMethod('Twitter', Work_canvas, 'img/No188.png')">
+            <!-- <div id = "preview"></div> -->
         </div>
         <div class="tab_content" id="design_content">
-            テンプレートの内容がここに入ります
+          <img type = "image" src = "img/テンプレート.png" onclick = "CallCreateMethod('Twitter', Work_canvas, 'img/テンプレート.png')">
         </div>
       </div>
     </aside>
@@ -90,7 +100,7 @@
             <input type = "button" value = "+20%" onclick = "CallObjectZoomMethod('ZoomIn', Work_canvas)"> 
             <input type = "button" value = "-20%" onclick = "CallObjectZoomMethod('ZoomOut', Work_canvas)"></br>
             <input type = "button" value = "Clone"onclick="CallCreateMethod('Clone', Work_canvas)"></br>
-            <input type = "file"> 
+            <input type = "file" id = "example" multiple> 
           </from>
         </div>
         <div class="edittab_content" id="editprogramming_content">
@@ -146,6 +156,7 @@
     <script src= "Color_Cange.js"></script>
     <script src= "font.js"></script>
     <script src= "Add_Canvas.js"></script>
+    <script src= "file.js"></script>
     <script>
 
       var bool = true;

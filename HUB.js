@@ -1,4 +1,4 @@
-function CallCreateMethod(value, Work_canvas){
+function CallCreateMethod(value, Work_canvas, img_name){
   switch(value){
     case 'Rect':
       CreateRect(Work_canvas);
@@ -9,7 +9,7 @@ function CallCreateMethod(value, Work_canvas){
       break;
 
     case 'Twitter':
-    CreateTwitter(Work_canvas);
+    CreateTwitter(Work_canvas, img_name);
     break;
 
     case 'Text':
