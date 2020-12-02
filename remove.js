@@ -1,9 +1,10 @@
+var remove_Object_cnt = []
 function Remove_Object(Work_canvas){
   Select = (Work_canvas.getActiveObject());
   console.log(Select);
   try{
       if(Select._objects.length > 1){
-      Select._objects.forEach(function (object, key){
+        Select._objects.forEach(function (object, key){
         Work_canvas.remove(object);
       });
       Work_canvas.discardActiveObject();
@@ -11,6 +12,7 @@ function Remove_Object(Work_canvas){
     }
   }
   catch{
+    remove_Object_cnt.push(Select.name);
     Work_canvas.remove(Select);
   }
 }

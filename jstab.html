@@ -47,7 +47,7 @@
           </from>
           <h3 id="nomal">機能</h3></br>
           <from>
-            <input type = "image" value = "クリックして！" src = "twitter.png" onclick="CallCreateMethod('Twitter', Work_canvas)" width="50" height="50"></br>
+            <input type = "image" value = "クリックして！" src = "twitter.png" onclick="CallCreateMethod('Twitter', Work_canvas, 'twitter.png')" width="50" height="50"></br>
           </from>
           <h3 id="nomal">テキスト</h3></br>
           <from>
@@ -101,11 +101,13 @@
             <input type = "button" value = "-20%" onclick = "CallObjectZoomMethod('ZoomOut', Work_canvas)"></br>
             <input type = "button" value = "Clone"onclick="CallCreateMethod('Clone', Work_canvas)"></br>
             <input type = "file" id = "example" multiple> 
+            <input type = "button" value = "Test" onclick="Test()">
           </from>
         </div>
         <div class="edittab_content" id="editprogramming_content">
           <from>
             リンクの内容がここに入ります
+            <img type = "image" src = "orange_rect.png" id = "https://youtube.com" onclick="document.getElementById('URLBox').value = 'https://youtube.com'">
             <input type = "text" id = "URLBox" value = "">
             <input type = "button" value = "URLを設定する" onclick = "CallSettingMethod()">
           </from>
@@ -182,6 +184,18 @@
           }
         });
       });
+      function Test(){
+        console.log("hoge");
+        fabric.loadSVGFromURL('http://localhost:8080/menu10.svg', function(objects)  {
+          for (let i in objects) {
+            Object_list[Object_cnt] = new fabric.Rect(objects[i],{});
+            Work_canvas.add(Object_list[Object_cnt]);
+            Work_canvas.renderAll();
+            Object_cnt += 1;
+            console.log(Object_cnt);
+          }
+        })
+      };
       Work_canvas.on('selection:created', function(options) {
         tmp_undo.push(Work_canvas.toDatalessJSON());
         document.getElementById("position_left").value = Select.left;
@@ -204,6 +218,13 @@
           left: Math.round(options.target.left / Smallgrid) * Smallgrid,
           top: Math.round(options.target.top / Smallgrid) * Smallgrid
         });
+        }
+      });
+      Work_canvas.on('object:rotating', function(options){
+        if(bool == false){
+          options.target.set({
+            snapAngle: 0
+          });
         }
       });
       Work_canvas.on('object:moving', function(options) { 
