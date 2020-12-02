@@ -14,6 +14,7 @@ function CreateRect(Work_canvas){
     height: 80,
     snapAngle: 5,
     fill: 'orangered',
+    name : Object_cnt
   });
   Work_canvas.add(Object_list[Object_cnt]).setActiveObject(Object_list[Object_cnt]);
   Object_cnt = Object_cnt + 1;
@@ -27,6 +28,7 @@ function CreateCircle(Work_canvas){
     fill: 'blue',
     radius: 30,
     snapAngle: 5,
+    name : Object_cnt
   });
   Work_canvas.add(Object_list[Object_cnt]).setActiveObject(Object_list[Object_cnt]);
   Object_cnt = Object_cnt + 1;
@@ -42,6 +44,7 @@ function CreateText(Work_canvas){
     textAlign: 'center',
     fixedWidth: 150,
     snapAngle: 5,
+    name : Object_cnt
   });
   Work_canvas.add(Object_list[Object_cnt]).setActiveObject(Object_list[Object_cnt]);;
   Object_cnt = Object_cnt + 1;
@@ -62,11 +65,11 @@ function CreateClone(Work_canvas) {
 
 function CreateTwitter(Work_canvas, img_name){
   Object_list[Object_cnt] = new fabric.Image.fromURL(img_name,function(oImg){
-    oImg.set({id: Object_cnt, left:80, top:80, snapAngle: 5});
+    oImg.set({id: Object_cnt, left:80, top:80, snapAngle: 5, name: Object_cnt});
     oImg.scale(0.1);
     Work_canvas.add(oImg).setActiveObject(oImg);
+    Object_cnt = Object_cnt + 1;
   });
-  Object_cnt = Object_cnt + 1;
 }
 
 /*function CreateTwitter(Work_canvas){
