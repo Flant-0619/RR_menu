@@ -131,6 +131,7 @@ function CallCanvasZoomMethod(value, Work_canvas){
   }
 }
 
+/*
 function CallObjectZoomMethod(value, Work_canvas){
   switch(value){
     case 'ZoomIn' :
@@ -142,6 +143,7 @@ function CallObjectZoomMethod(value, Work_canvas){
       break
   }
 }
+*/
 
 function CallBack(Work_canvas){
   Back_to_screen(Work_canvas);
@@ -168,4 +170,8 @@ function CallColorChange(value, Work_canvas){
 
 function CallChangeFont(Work_canvas){
   CangeFont(Work_canvas);
+}
+
+function Call_Size_Change(Work_canvas){
+  Change_obj_size(Work_canvas);
 }
