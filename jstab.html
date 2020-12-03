@@ -99,8 +99,9 @@
             y軸:<input type = "number" id = "position_top" value = "0" onfocus="this.select();"></br>
             <input type = "button" value = "適用" onclick = "Call_Position_Change(Work_canvas)"></br>
             サイズ:</br>
-            <input type = "button" value = "+20%" onclick = "CallObjectZoomMethod('ZoomIn', Work_canvas)"> 
-            <input type = "button" value = "-20%" onclick = "CallObjectZoomMethod('ZoomOut', Work_canvas)"></br>
+            横:<input type = "number" id = "obj_Width" value = "0" onfocus = "this.select();"></br>
+            縦:<input type = "number" id = "obj_Height" value = "0" onfocus="this.select();">
+            <input type = "button" value = "適用" onclick = "Call_Size_Change(Work_canvas)">
             <input type = "button" value = "Clone"onclick="CallCreateMethod('Clone', Work_canvas)"></br>
             <input type = "file" id = "example" multiple> 
             <input type = "button" value = "Test" onclick="Test()">
@@ -129,7 +130,7 @@
       <div class="canvastab_content" id="canvas1_content">
         <canvas id="canvas1" width="600" height="600" style="border:1px solid;"></canvas>
       </div>
-      
+
     </div>
     <canvas hidden id="Startup_canvas" width="1400" height="1400" style="border:1px solid;"></canvas>
     <script type = "text/javascript">
@@ -197,7 +198,7 @@
           }
         });
       });
-      
+
       function Test(){
         console.log("hoge");
         fabric.loadSVGFromURL('http://localhost:8080/menu10.svg', function(objects)  {
@@ -226,10 +227,14 @@
         Work_canvas.relativePan(delta);
       }
     });
+
+      //選択したオブジェクトの位置、サイズを取得&表示
       Work_canvas.on('selection:created', function(options) {
         tmp_undo.push(Work_canvas.toDatalessJSON());
         document.getElementById("position_left").value = Select.left;
         document.getElementById("position_top").value = Select.top;
+        document.getElementById("obj_Width").value = Select.width * Select.scaleX;
+        document.getElementById("obj_Height").value = Select.height * Select.scaleY;
       });
       Work_canvas.on('object:modified', function(option){
         undo.push(tmp_undo.pop());
@@ -237,11 +242,17 @@
         tmp_undo.push(Work_canvas.toDatalessJSON());
         document.getElementById("position_left").value = Select.left;
         document.getElementById("position_top").value = Select.top;
+        document.getElementById("obj_Width").value = Select.width * Select.scaleX;
+        document.getElementById("obj_Height").value = Select.height * Select.scaleY;
       })  
       Work_canvas.on('selection:updated', function(option){
         document.getElementById("position_left").value = Select.left;
         document.getElementById("position_top").value = Select.top;
+        document.getElementById("obj_Width").value = Select.width * Select.scaleX;
+        document.getElementById("obj_Height").value = Select.height * Select.scaleY;
       })
+
+      //グリッド線に合わせて移動
       Work_canvas.on('object:moving', function(options) { 
         if(bool == true){
         options.target.set({
@@ -250,19 +261,29 @@
         });
         }
       });
+
+      //グリッド線が非表示のとき滑らかに回転する
       Work_canvas.on('object:rotating', function(options){
         if(bool == false){
           options.target.set({
             snapAngle: 0
           });
         }
+        if(bool == true){
+          options.target.set({
+            snapAngle: 5
+          });
+        }
       });
+
+      //パーツウィンドウからd&dでキャンバスに表示(未完成)
+      Work_canvas.on('drop', function(options){
+          CallCreateMethod('Rect', Work_canvas);
+      });
+
+      //オブジェクトが600×600の範囲を出ない
       Work_canvas.on('object:moving', function(options) { 
-        if(Select.left <= 0)
-          options.target.set({left:0});
-        if(Select.top <= 0)
-          options.target.set({top:0});
-          if(Select.angle == 0){
+        if(Select.angle == 0){
           //角度が0のとき
           if(Select.left <= 0){
             //左
@@ -358,6 +379,54 @@
           }
         }
       });
+
+      //手動でサイズを変更するとき600を超えない
+      Work_canvas.on('object:scaling', function(options){
+          if(Select.width * Select.scaleX > 600){
+            Select.left = 0;
+            Select.scaleX = 600 / Select.width;
+          }
+          if(Select.height * Select.scaleY > 600){
+            Select.top = 0;
+            Select.scaleY = 600 / Select.height;
+          }
+      });
+
+      //数値を入力してサイズの変更をして600の範囲を出た場合
+      Work_canvas.on('selection:cleared', function(options){
+        if((Select.left + Select.width * Select.scaleX) >= 600){
+          Select.left = 600 - (Select.width * Select.scaleX);
+          if(Select.width * Select.scaleX > 600 || Select.height * Select.scaleY > 600){
+            Select.left = 0;
+            Select.top = 0;
+          }
+        }
+        if((Select.top + Select.height * Select.scaleY) >= 600){
+          Select.top = 600 - (Select.height * Select.scaleY);
+          if(Select.width * Select.scaleX > 600 || Select.height * Select.scaleY > 600){
+            Select.left = 0;
+            Select.top = 0;
+          }
+        }
+      });
+      Work_canvas.on('selection:created', function(options){
+        if((Select.left + Select.width * Select.scaleX) >= 600){
+          Select.left = 600 - (Select.width * Select.scaleX);
+          if(Select.width * Select.scaleX > 600 || Select.height * Select.scaleY > 600){
+            Select.left = 0;
+            Select.top = 0;
+          }
+        }
+        if((Select.top + Select.height * Select.scaleY) >= 600){
+          Select.top = 600 - (Select.height * Select.scaleY);
+          if(Select.width * Select.scaleX > 600 || Select.height * Select.scaleY > 600){
+            Select.left = 0;
+            Select.top = 0;
+          }
+        }
+      });
+
+      //グリッド線に合わせた拡大
       Work_canvas.on('object:scaling', options => {
         if(bool == true){
           var target = options.target,
@@ -388,6 +457,20 @@
           };
           target.set(attrs);
         } 
+      });
+      Work_canvas.on('object:scaled', function(options){
+        if(Select.left <= 0){
+          options.target.set({left:0});
+          console.log(Select.left);
+        }
+        if(Select.top <= 0){
+          options.target.set({top:0});
+          console.log(Select.top);
+        }
+        if(Select.left + (Select.width * Select.scaleX) >= 600){
+            //右
+            options.target.set({left:600 - (Select.width * Select.scaleX)});
+          }
       });
     </script>
   </body>
