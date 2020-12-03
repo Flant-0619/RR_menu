@@ -5,7 +5,8 @@ function Remove_Object(Work_canvas){
   try{
       if(Select._objects.length > 1){
         Select._objects.forEach(function (object, key){
-        Work_canvas.remove(object);
+          remove_Object_cnt.push(object.name);
+          Work_canvas.remove(object);
       });
       Work_canvas.discardActiveObject();
       Work_canvas.renderAll();
@@ -29,4 +30,5 @@ function Remove_All_Object(Work_canvas) {
   for (let i in objects) {
     Work_canvas.remove(objects[i]);
   }
+  remove_Object_cnt = [];
 }

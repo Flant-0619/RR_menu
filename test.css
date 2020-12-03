@@ -1,8 +1,3 @@
-/* 縦スクロール禁止 */
-body{
-  overflow-y: hidden;
-}
-
 /* キャンバス */
 .canvastabs {
   background-color: white;

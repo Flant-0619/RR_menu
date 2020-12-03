@@ -27,6 +27,7 @@
         <input type = "button" value = "削除" onclick = "CallRemoveMethod('Remove', Work_canvas)">
         <input type = "button" value = "全削除" onclick = "CallRemoveMethod('RemoveAll', Work_canvas)">
         <input type = "checkbox" id = "checkbox1" /><label for="checkbox1">グリッド線</label>
+        <input type = "checkbox" id = "checkbox2" /><label for="checkbox2">移動</label>
         <input type = "button" id= "save" value = "保存" onclick = "CallSaveMethod(Work_canvas)">
       </from>
     </header>
@@ -48,6 +49,7 @@
           <h3 id="nomal">機能</h3></br>
           <from>
             <input type = "image" value = "クリックして！" src = "twitter.png" onclick="CallCreateMethod('Twitter', Work_canvas, 'twitter.png')" width="50" height="50"></br>
+            <input type = "image" value = "クリックして！" src = "instagram.png" onclick="CallCreateMethod('Twitter', Work_canvas, 'instagram.png')" width="50" height="50"></br>
           </from>
           <h3 id="nomal">テキスト</h3></br>
           <from>
@@ -184,6 +186,18 @@
           }
         });
       });
+      $(function(){
+        $("#checkbox2").button();
+        $("#checkbox2").click(function(){
+          var a = $("#checkbox2").prop("checked");
+          if(a){
+            Work_canvas.selection = false;
+          }else{
+            Work_canvas.selection = true;
+          }
+        });
+      });
+      
       function Test(){
         console.log("hoge");
         fabric.loadSVGFromURL('http://localhost:8080/menu10.svg', function(objects)  {
@@ -196,6 +210,22 @@
           }
         })
       };
+      var panning = false;
+      Work_canvas.on('mouse:up', function (e) {
+        panning = false;
+      });
+
+      Work_canvas.on('mouse:down', function (e) {
+        panning = true;
+      });
+      Work_canvas.on('mouse:move', function (e) {
+      if (panning && e && e.e && !Work_canvas.selection) {
+        debugger;
+        var units = 10;
+        var delta = new fabric.Point(e.e.movementX, e.e.movementY);
+        Work_canvas.relativePan(delta);
+      }
+    });
       Work_canvas.on('selection:created', function(options) {
         tmp_undo.push(Work_canvas.toDatalessJSON());
         document.getElementById("position_left").value = Select.left;

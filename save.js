@@ -38,11 +38,11 @@ function Save_SVG(Work_canvas){
   for(var i = 1; i <= count; i ++){
     console.log(i);
     if(remove_Object_cnt[0] == (i - 1)){
+      console.log("hoge")
       remove_Object_cnt.shift();
       continue;
     }
-   
-    console.log(Object_list[i-1]);
+    console.log(Object_list[i-1].id);
     if(Object_list[i-1].id){
       String_list.splice(j, 0, `<a xlink:href= ` + Object_list[i-1].id + `>`);
       String_list.splice(j+2, 0, "</a>");
