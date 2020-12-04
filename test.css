@@ -40,7 +40,7 @@ input[name="canvastab_item"] {
   clear: both;
   overflow: hidden;
   position: relative;
-    bottom: 480px;
+  bottom: 480px;
   max-height: 480px;
   max-width: 600px;
   overflow: scroll;
@@ -67,6 +67,12 @@ input[name="canvastab_item"] {
 #canvas_input4:checked ~ #canvas4_content,
 #canvas_input5:checked ~ #canvas5_content{
   display: block;
+}
+#canvas_input2,#canvas_label2,
+#canvas_input3,#canvas_label3,
+#canvas_input4,#canvas_label4,
+#canvas_input5,#canvas_label5{
+  visibility:hidden;
 }
 
 /*選択されているタブのスタイルを変える*/

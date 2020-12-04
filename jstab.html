@@ -12,6 +12,7 @@
     <header>
       <from>
         <input type = "button" value = "+" id = "addcanvas" onclick = "Call_Add_Canvas()">
+        <input type = "button" value = "-" id = "addcanvas" onclick = "Call_Remove_Canvas()">
         <select id = "pzoom" onchange="CallPCanvasZoomMethod(Work_canvas)">
           <option value="kobetu" id = "kobe" disabled>フォント表示</option>
           <option value="50%" id = "font0">50%</option>
@@ -119,18 +120,41 @@
     <!-- キャンバス -->
     <div class="canvastabs">
       <script>
-        var Work_Canvas_List = []
-        
         function Call_Add_Canvas(){
-          Work_Canvas_List.push(add_canvas())
+          add_canvas();
+        }
+        function Call_Remove_Canvas(){
+          remove_canvas();
         }
       </script>
       <input id="canvas_input1" type="radio"  name="canvastab_item" onchange="Change_Work_Canvas(Work_Canvas_List[0])" checked>
       <label class="canvastab_item" for="canvas_input1" id = "canvas_label1">キャンバス1</label>
+      <input id="canvas_input2" type="radio"  name="canvastab_item" onchange="Change_Work_Canvas(Work_Canvas_List[1])">
+      <label class="canvastab_item" for="canvas_input2" id = "canvas_label2">キャンバス2</label>
+      <input id="canvas_input3" type="radio"  name="canvastab_item"
+      onchange="Change_Work_Canvas(Work_Canvas_List[2])">
+      <label class="canvastab_item" for="canvas_input3" id = "canvas_label3">キャンバス3</label>
+      <input id="canvas_input4" type="radio"  name="canvastab_item"
+      onchange="Change_Work_Canvas(Work_Canvas_List[3])">
+      <label class="canvastab_item" for="canvas_input4" id = "canvas_label4">キャンバス4</label>
+      <input id="canvas_input5" type="radio"  name="canvastab_item"
+      onchange="Change_Work_Canvas(Work_Canvas_List[4])">
+      <label class="canvastab_item" for="canvas_input5" id = "canvas_label5">キャンバス5</label>
       <div class="canvastab_content" id="canvas1_content">
         <canvas id="canvas1" width="600" height="600" style="border:1px solid;"></canvas>
       </div>
-
+      <div class="canvastab_content" id="canvas2_content">
+        <canvas id="canvas2" width="600" height="600" style="border:1px solid;"></canvas>
+      </div>
+      <div class="canvastab_content" id="canvas3_content">
+        <canvas id="canvas3" width="600" height="600" style="border:1px solid;"></canvas>
+      </div>
+      <div class="canvastab_content" id="canvas4_content">
+        <canvas id="canvas4" width="600" height="600" style="border:1px solid;"></canvas>
+      </div>
+      <div class="canvastab_content" id="canvas5_content">
+        <canvas id="canvas5" width="600" height="600" style="border:1px solid;"></canvas>
+      </div>
     </div>
     <canvas hidden id="Startup_canvas" width="1400" height="1400" style="border:1px solid;"></canvas>
     <script type = "text/javascript">
@@ -142,6 +166,11 @@
     <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
     <script id = fabriccanvasid1 type = "text/javascript">var fabriccanvas1 = new fabric.Canvas('canvas1',{preserveObjectStacking: true});</script>
+    <script id = fabriccanvasid2 type = "text/javascript">var fabriccanvas2 = new fabric.Canvas('canvas2',{preserveObjectStacking: true});</script>
+    <script id = fabriccanvasid3 type = "text/javascript">var fabriccanvas3 = new fabric.Canvas('canvas3',{preserveObjectStacking: true});</script>
+    <script id = fabriccanvasid4 type = "text/javascript">var fabriccanvas4 = new fabric.Canvas('canvas4',{preserveObjectStacking: true});</script>
+    <script id = fabriccanvasid5 type = "text/javascript">var fabriccanvas5 = new fabric.Canvas('canvas5',{preserveObjectStacking: true});</script>
+
     <script type = "text/javascript">
     document.getElementById("Startup_canvas").style.display="none";
     var Startupcanvas = new fabric.Canvas('Startup_canvas');
@@ -162,12 +191,12 @@
     <script src= "font.js"></script>
     <script src= "Add_Canvas.js"></script>
     <script src= "file.js"></script>
+    <script src= "Event_Handler.js"></script>
     <script>
 
       var bool = true;
       var Work_canvas = fabriccanvas1;
-      Work_Canvas_List.push(fabriccanvas1);
-      console.log(Work_canvas);
+      var Work_Canvas_List = [fabriccanvas1,fabriccanvas2,fabriccanvas3,fabriccanvas4,fabriccanvas5];
       Grid_Img = Startup(Work_canvas, Startupcanvas);
       var canvas_size = 600;
       var tmp_undo = [];
@@ -198,7 +227,7 @@
           }
         });
       });
-
+      
       function Test(){
         console.log("hoge");
         fabric.loadSVGFromURL('http://localhost:8080/menu10.svg', function(objects)  {
@@ -212,6 +241,7 @@
         })
       };
       var panning = false;
+      /*
       Work_canvas.on('mouse:up', function (e) {
         panning = false;
       });
@@ -251,7 +281,7 @@
         document.getElementById("obj_Width").value = Select.width * Select.scaleX;
         document.getElementById("obj_Height").value = Select.height * Select.scaleY;
       })
-
+      
       //グリッド線に合わせて移動
       Work_canvas.on('object:moving', function(options) { 
         if(bool == true){
@@ -261,7 +291,7 @@
         });
         }
       });
-
+      
       //グリッド線が非表示のとき滑らかに回転する
       Work_canvas.on('object:rotating', function(options){
         if(bool == false){
@@ -283,7 +313,7 @@
 
       //オブジェクトが600×600の範囲を出ない
       Work_canvas.on('object:moving', function(options) { 
-        if(Select.angle == 0){
+          if(Select.angle == 0){
           //角度が0のとき
           if(Select.left <= 0){
             //左
@@ -379,7 +409,7 @@
           }
         }
       });
-
+      
       //手動でサイズを変更するとき600を超えない
       Work_canvas.on('object:scaling', function(options){
           if(Select.width * Select.scaleX > 600){
@@ -471,7 +501,7 @@
             //右
             options.target.set({left:600 - (Select.width * Select.scaleX)});
           }
-      });
+      });*/
     </script>
   </body>
 </html>

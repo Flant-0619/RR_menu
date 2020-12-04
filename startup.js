@@ -3,7 +3,11 @@ function Startup(Work_canvas, Startupcanvas){
   bool = CreateSmallGrid(Startupcanvas);
   bool = CreateBigGrid(Startupcanvas);
   var Grid_Img = Startupcanvas.toDataURL("image/jpeg");
-  Work_canvas.setBackgroundImage(Grid_Img, Work_canvas.renderAll.bind(Work_canvas),{left : -300, top : -300});
+  fabriccanvas1.setBackgroundImage(Grid_Img, fabriccanvas1.renderAll.bind(fabriccanvas1),{left : -300, top : -300});
+  fabriccanvas2.setBackgroundImage(Grid_Img, fabriccanvas2.renderAll.bind(fabriccanvas2),{left : -300, top : -300});
+  fabriccanvas3.setBackgroundImage(Grid_Img, fabriccanvas3.renderAll.bind(fabriccanvas3),{left : -300, top : -300});
+  fabriccanvas4.setBackgroundImage(Grid_Img, fabriccanvas4.renderAll.bind(fabriccanvas4),{left : -300, top : -300});
+  fabriccanvas5.setBackgroundImage(Grid_Img, fabriccanvas5.renderAll.bind(fabriccanvas5),{left : -300, top : -300});
   RemoveGrid(Startupcanvas);
   return Grid_Img;
 }

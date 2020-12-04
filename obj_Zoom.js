@@ -17,8 +17,8 @@ function obj_ZoomOut(Work_canvas){
 */
 
 function Change_obj_size(Work_canvas){
-  undo.push(Work_canvas.toDatalessJSON());
-  redo = [];
+  Work_undo.push(Work_canvas.toDatalessJSON());
+  Work_redo = [];
   var Width = document.getElementById("obj_Width");
   var Height = document.getElementById("obj_Height");
   var Width_value = document.getElementById("obj_Width").value;

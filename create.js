@@ -1,12 +1,10 @@
-var undo = [];
-var redo = [];
 var Object_cnt = 0;
 var Object_list = [];
 var shift = 10;
 
 function CreateRect(Work_canvas){
-  //undo.push(canvasA.toDatalessJSON());
-  redo = [];
+  Work_undo.push(Work_canvas.toDatalessJSON());
+  Work_redo = [];
   Object_list[Object_cnt] = new fabric.Rect({
     left: 80,
     top: 80,
@@ -21,8 +19,8 @@ function CreateRect(Work_canvas){
   Object_cnt = Object_cnt + 1;
 }
 function CreateCircle(Work_canvas){
-  //undo.push(canvasA.toDatalessJSON());
-  redo = [];
+  Work_undo.push(Work_canvas.toDatalessJSON());
+  Work_redo = [];
   Object_list[Object_cnt] = new fabric.Circle({
     left: 50,
     top: 50,
@@ -36,8 +34,8 @@ function CreateCircle(Work_canvas){
   Object_cnt = Object_cnt + 1;
 }
 function CreateText(Work_canvas){
-  //undo.push(canvasA.toDatalessJSON());
-  redo = [];
+  Work_undo.push(Work_canvas.toDatalessJSON());
+  Work_redo = [];
   Object_list[Object_cnt] = new fabric.IText('Mytext', {
     width: 150,
     top: 5,
@@ -54,7 +52,6 @@ function CreateText(Work_canvas){
 }
 
 function CreateClone(Work_canvas) {
-  //undo.push(canvasA.toDatalessJSON());
   var Clone_obj = fabric.util.object.clone(Select);
   Clone_obj.set({left: Select.left + shift,top: Select.top + shift});
   Work_canvas.add(Clone_obj); 
@@ -67,6 +64,8 @@ function CreateClone(Work_canvas) {
 });*/
 
 function CreateTwitter(Work_canvas, img_name){
+  Work_undo.push(Work_canvas.toDatalessJSON());
+  Work_redo = [];
   Object_list[Object_cnt] = new fabric.Image.fromURL(img_name,function(oImg){
     if(img_name == "twitter.png" ){
       oImg.set({left:80, top:80, snapAngle: 5, name: Object_cnt, IDF: 'SNS'});

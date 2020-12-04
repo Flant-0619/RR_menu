@@ -1,6 +1,17 @@
-var cnt = 1;
-var Fabric_Canvas_List = []
+var cnt = 2;
+var cnt_box = [];
 function add_canvas(){
+  cnt_box.push(cnt);
+  document.getElementById("canvas_input" + cnt).style.visibility = 'visible';
+  document.getElementById("canvas_label" + cnt).style.visibility = 'visible';
+  cnt += 1;
+}
+function remove_canvas(){
+  cnt = cnt_box.pop();
+  document.getElementById("canvas_input" + cnt).style.visibility = 'hidden';
+  document.getElementById("canvas_label" + cnt).style.visibility = 'hidden';
+}
+/*function add_canvas(){
   var document_value = document.getElementById('canvas_label' + cnt);
   cnt += 1;
   document_value.insertAdjacentHTML('afterend', `<input id="canvas_input`+cnt+`"type="radio" onclick="Change_Work_Canvas(Work_Canvas_List[`+(cnt-1)+`])" name="canvastab_item">`);
@@ -14,7 +25,7 @@ function add_canvas(){
   Fabric_Canvas_List[cnt-1] = new fabric.Canvas(('canvas'+cnt),{preserveObjectStacking: true});
   Fabric_Canvas_List[cnt-1].setBackgroundImage(Grid_Img, Fabric_Canvas_List[cnt-1].renderAll.bind(Fabric_Canvas_List[cnt-1]),{left : -300, top : -300});
   return Fabric_Canvas_List[cnt-1]
-}
+}*/
 
 
 
@@ -22,18 +33,58 @@ function Change_Work_Canvas(value){
   //Work_canvas = value;
   if(document.getElementById('canvas_input1').checked){
     Work_canvas = value;
+    Work_undo = canvas1_undo;
+    Work_redo = canvas1_redo;
+    if (Work_undo.length == 0){
+      elem8.disabled = true;
+    }
+    if (Work_redo.length != 0){
+      elem9.disabled = false;
+    }
     console.log(Work_canvas)
   }else if(document.getElementById('canvas_input2').checked){
     Work_canvas = value;
+    Work_undo = canvas2_undo;
+    Work_redo = canvas2_redo;
+    if (Work_undo.length == 0){
+      elem8.disabled = true;
+    }
+    if (Work_redo.length != 0){
+      elem9.disabled = false;
+    }
     console.log(Work_canvas)
   }else if(document.getElementById('canvas_input3').checked){
     Work_canvas = value;
+    Work_undo = canvas3_undo;
+    Work_redo = canvas3_redo;
+    if (Work_undo.length == 0){
+      elem8.disabled = true;
+    }
+    if (Work_redo.length != 0){
+      elem9.disabled = false;
+    }
     console.log(Work_canvas)
   }else if(document.getElementById('canvas_input4').checked){
     Work_canvas = value;
+    Work_undo = canvas4_undo;
+    Work_redo = canvas4_redo;
+    if (Work_undo.length == 0){
+      elem8.disabled = true;
+    }
+    if (Work_redo.length != 0){
+      elem9.disabled = false;
+    }
     console.log(Work_canvas)
   }else if(document.getElementById('canvas_input5').checked){
     Work_canvas = value;
+    Work_undo = canvas5_undo;
+    Work_redo = canvas5_redo;
+    if (Work_undo.length == 0){
+      elem8.disabled = true;
+    }
+    if (Work_redo.length != 0){
+      elem9.disabled = false;
+    }
     console.log(Work_canvas)
   }
 }

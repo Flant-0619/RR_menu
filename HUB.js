@@ -20,7 +20,7 @@ function CallCreateMethod(value, Work_canvas, img_name){
       CreateClone(Work_canvas);
       break;
   }
-  if(undo.length != 0){
+  if(Work_undo.length != 0){
     elem8.disabled = false;
   }
 }
