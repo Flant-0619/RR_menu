@@ -30,7 +30,10 @@
         <input type = "checkbox" id = "checkbox1" /><label for="checkbox1">グリッド線</label>
         <input type = "checkbox" id = "checkbox2" /><label for="checkbox2">移動</label>
         <input type = "button" id= "save" value = "保存" onclick = "CallSaveMethod(Work_canvas)">
-      </from>
+        <input id="input3" value="入力データ">
+        <button type="button" onclick="funcCopy();">入力値をコピー</button>
+        <label id="label3" style="border:1px black solid; padding:1px 5px;">label</label>
+        </from>
     </header>
     <!-- パーツウィンドウ -->
     <aside id="left">
@@ -241,6 +244,11 @@
         })
       };
       var panning = false;
+
+      function funcCopy() {
+        var text = document.getElementById("input3").value;
+        document.getElementById("label3").textContent = text;
+      }
       /*
       Work_canvas.on('mouse:up', function (e) {
         panning = false;
