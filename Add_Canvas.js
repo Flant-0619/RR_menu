@@ -10,6 +10,7 @@ function remove_canvas(){
   cnt = cnt_box.pop();
   document.getElementById("canvas_input" + cnt).style.visibility = 'hidden';
   document.getElementById("canvas_label" + cnt).style.visibility = 'hidden';
+  Remove_All_Object(Work_canvas);
 }
 /*function add_canvas(){
   var document_value = document.getElementById('canvas_label' + cnt);
@@ -41,6 +42,9 @@ function Change_Work_Canvas(value){
     if (Work_redo.length != 0){
       elem9.disabled = false;
     }
+    Work_remove_Object_cnt = canvas1_remove_Object_cnt;
+    Work_Object_cnt = canvas1_Object_cnt;
+    Work_Object_list = canvas1_Object_list;
     console.log(Work_canvas)
   }else if(document.getElementById('canvas_input2').checked){
     Work_canvas = value;
@@ -52,6 +56,9 @@ function Change_Work_Canvas(value){
     if (Work_redo.length != 0){
       elem9.disabled = false;
     }
+    Work_remove_Object_cnt = canvas2_remove_Object_cnt;
+    Work_Object_cnt = canvas2_Object_cnt;
+    Work_Object_list = canvas2_Object_list;
     console.log(Work_canvas)
   }else if(document.getElementById('canvas_input3').checked){
     Work_canvas = value;
@@ -63,6 +70,9 @@ function Change_Work_Canvas(value){
     if (Work_redo.length != 0){
       elem9.disabled = false;
     }
+    Work_remove_Object_cnt = canvas3_remove_Object_cnt;
+    Work_Object_cnt = canvas3_Object_cnt;
+    Work_Object_list = canvas3_Object_list;
     console.log(Work_canvas)
   }else if(document.getElementById('canvas_input4').checked){
     Work_canvas = value;
@@ -74,6 +84,9 @@ function Change_Work_Canvas(value){
     if (Work_redo.length != 0){
       elem9.disabled = false;
     }
+    Work_remove_Object_cnt = canvas4_remove_Object_cnt;
+    Work_Object_cnt = canvas4_Object_cnt;
+    Work_Object_list = canvas4_Object_list;
     console.log(Work_canvas)
   }else if(document.getElementById('canvas_input5').checked){
     Work_canvas = value;
@@ -85,6 +98,9 @@ function Change_Work_Canvas(value){
     if (Work_redo.length != 0){
       elem9.disabled = false;
     }
+    Work_remove_Object_cnt = canvas5_remove_Object_cnt;
+    Work_Object_cnt = canvas5_Object_cnt;
+    Work_Object_list = canvas5_Object_list;
     console.log(Work_canvas)
   }
 }

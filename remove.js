@@ -1,11 +1,10 @@
-var remove_Object_cnt = []
 function Remove_Object(Work_canvas){
-  Select = (Work_canvas.getActiveObject());
   console.log(Select);
+  Work_undo.push(Work_canvas.toDatalessJSON());
+  Work_redo = [];
   try{
       if(Select._objects.length > 1){
         Select._objects.forEach(function (object, key){
-          remove_Object_cnt.push(object.name);
           Work_canvas.remove(object);
       });
       Work_canvas.discardActiveObject();
@@ -13,11 +12,12 @@ function Remove_Object(Work_canvas){
     }
   }
   catch{
-    remove_Object_cnt.push(Select.name);
     Work_canvas.remove(Select);
   }
 }
 function Remove_All_Object(Work_canvas) {
+  Work_undo.push(Work_canvas.toDatalessJSON());
+  Work_redo = [];
   var objects = Work_canvas.getObjects('rect');
   for (let i in objects) {
     Work_canvas.remove(objects[i]);
@@ -30,5 +30,4 @@ function Remove_All_Object(Work_canvas) {
   for (let i in objects) {
     Work_canvas.remove(objects[i]);
   }
-  remove_Object_cnt = [];
 }

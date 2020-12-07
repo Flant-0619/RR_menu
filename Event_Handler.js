@@ -17,13 +17,14 @@ if (panning && e && e.e && !fabriccanvas1.selection) {
 fabriccanvas1.on('selection:created', function(e) {
   //Selectに情報を渡す
   GetData(Work_canvas);
+  console.log(e);
   //選択したオブジェクトの位置、サイズを取得&表示
   tmp_undo.push(Work_canvas.toDatalessJSON());
   document.getElementById("position_left").value = Select.left;
   document.getElementById("position_top").value = Select.top;
   document.getElementById("obj_Width").value = Select.width * Select.scaleX;
   document.getElementById("obj_Height").value = Select.height * Select.scaleY;
-  //これなにかわかりますか？
+  //数値を入力してサイズの変更をして600の範囲を出た場合
   if((Select.left + Select.width * Select.scaleX) >= 600){
     Select.left = 600 - (Select.width * Select.scaleX);
     if(Select.width * Select.scaleX > 600 || Select.height * Select.scaleY > 600){
@@ -284,7 +285,7 @@ fabriccanvas2.on('selection:created', function(e) {
   document.getElementById("position_top").value = Select.top;
   document.getElementById("obj_Width").value = Select.width * Select.scaleX;
   document.getElementById("obj_Height").value = Select.height * Select.scaleY;
-  //これなにかわかりますか？
+  //数値を入力してサイズの変更をして600の範囲を出た場合
   if((Select.left + Select.width * Select.scaleX) >= 600){
     Select.left = 600 - (Select.width * Select.scaleX);
     if(Select.width * Select.scaleX > 600 || Select.height * Select.scaleY > 600){
@@ -304,7 +305,7 @@ fabriccanvas2.on('selection:created', function(e) {
 fabriccanvas2.on('selection:updated', function(e) {
   //Selectに情報を渡す
   GetData(Work_canvas);
-  //これ何か分かる人いますか？
+  //リアルタイムに値を表示
   document.getElementById("position_left").value = Select.left;
   document.getElementById("position_top").value = Select.top;
   document.getElementById("obj_Width").value = Select.width * Select.scaleX;
@@ -545,7 +546,7 @@ fabriccanvas3.on('selection:created', function(e) {
   document.getElementById("position_top").value = Select.top;
   document.getElementById("obj_Width").value = Select.width * Select.scaleX;
   document.getElementById("obj_Height").value = Select.height * Select.scaleY;
-  //これなにかわかりますか？
+  ////数値を入力してサイズの変更をして600の範囲を出た場合
   if((Select.left + Select.width * Select.scaleX) >= 600){
     Select.left = 600 - (Select.width * Select.scaleX);
     if(Select.width * Select.scaleX > 600 || Select.height * Select.scaleY > 600){
@@ -806,7 +807,7 @@ fabriccanvas4.on('selection:created', function(e) {
   document.getElementById("position_top").value = Select.top;
   document.getElementById("obj_Width").value = Select.width * Select.scaleX;
   document.getElementById("obj_Height").value = Select.height * Select.scaleY;
-  //これなにかわかりますか？
+  //数値を入力してサイズの変更をして600の範囲を出た場合
   if((Select.left + Select.width * Select.scaleX) >= 600){
     Select.left = 600 - (Select.width * Select.scaleX);
     if(Select.width * Select.scaleX > 600 || Select.height * Select.scaleY > 600){
@@ -1067,7 +1068,7 @@ fabriccanvas5.on('selection:created', function(e) {
   document.getElementById("position_top").value = Select.top;
   document.getElementById("obj_Width").value = Select.width * Select.scaleX;
   document.getElementById("obj_Height").value = Select.height * Select.scaleY;
-  //これなにかわかりますか？
+  //手動でサイズを変更するとき600を超えない
   if((Select.left + Select.width * Select.scaleX) >= 600){
     Select.left = 600 - (Select.width * Select.scaleX);
     if(Select.width * Select.scaleX > 600 || Select.height * Select.scaleY > 600){

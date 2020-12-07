@@ -4,16 +4,15 @@ var result1 = 0;
 function Save_SVG(Work_canvas){
   SaveData = Work_canvas.toSVG();
   var fname = prompt("ファイル名を入力してください");
-  var blob = new Blob([SaveData],{type:"text/html"});
+  var blob = new Blob([SaveData],{type:"image/png"});
   var link = document.createElement('a');
   link.href = URL.createObjectURL(blob);
-  link.download = 'メニュー10.svg';
-  //link.click();
+  link.download = 'メニュー10.png';
+  link.click();
 
   var result1 = SaveData.indexOf("<g");
   String_list.push(SaveData.substr(0,result1));
   var count = ( SaveData.match( /<g/g ) || [] ).length ;
-  console.log(remove_Object_cnt[0]);
   for(i = 0; i < count; i++){
     if(i == 0){
       var result2 = SaveData.indexOf("</g>")
@@ -30,27 +29,38 @@ function Save_SVG(Work_canvas){
   String_list.push(SaveData.substr(result5));
   var j = 1;
   console.log(String_list);
-  if(remove_Object_cnt.length){
-    count += remove_Object_cnt.length;
-  }
+  console.log(cnt);
   console.log(count)
+  console.log(Work_canvas)
   //console.log(count + remove_Object_cnt.length);
-  for(var i = 1; i <= count; i ++){
-    console.log(i);
-    if(remove_Object_cnt[0] == (i - 1)){
-      console.log("hoge")
-      remove_Object_cnt.shift();
-      continue;
-    }
-    console.log(Object_list[i-1].id);
-    if(Object_list[i-1].id){
-      String_list.splice(j, 0, `<a xlink:href= ` + Object_list[i-1].id + `>`);
+  for(let i in Work_canvas._objects){
+    
+    if(Work_canvas._objects[i].id){
+      String_list.splice(j, 0, `<a xlink:href= ` + Work_canvas._objects
+      [i].id + `>`);
       String_list.splice(j+2, 0, "</a>");
       j += 3;
       continue;
     }
     j += 1;
   }
+  /*for(var i = 1; i <= count; i ++){
+    //console.log(i);
+    if(Work_remove_Object_cnt[0] == (i - 1)){
+      console.log("hoge")
+      Work_remove_Object_cnt.shift();
+      continue;
+    }
+    console.log("hoge")
+    console.log(Work_Object_list[i-1]);
+    if(Work_Object_list[i-1].id){
+      String_list.splice(j, 0, `<a xlink:href= ` + Work_Object_list[i-1].id + `>`);
+      String_list.splice(j+2, 0, "</a>");
+      j += 3;
+      continue;
+    }
+    j += 1;
+  }*/
   SaveData = String_list.join("");
   var blob = new Blob([SaveData],{type:"text/html"});
   var link = document.createElement('a');
