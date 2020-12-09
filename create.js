@@ -79,6 +79,9 @@ function CreateText(Work_canvas){
     name : Work_Object_cnt,
     IDF : 'Text'
   });
+  Work_tmp_propaty_list.push(null);
+  Work_tmp_propaty_list.push(Work_Object_list[Work_Object_cnt].name)
+  Work_tmp_propaty_list.push(Work_Object_list[Work_Object_cnt].IDF)
   Work_canvas.add(Work_Object_list[Work_Object_cnt]).setActiveObject(Work_Object_list[Work_Object_cnt]);;
   Work_Object_cnt = Work_Object_cnt + 1;
 }
@@ -108,6 +111,9 @@ function CreateTwitter(Work_canvas, img_name){
     }
     Work_Object_list[Work_Object_cnt] = oImg;
     oImg.scale(0.1);
+    Work_tmp_propaty_list.push(null);
+    Work_tmp_propaty_list.push(Work_Object_list[Work_Object_cnt].name)
+    Work_tmp_propaty_list.push(Work_Object_list[Work_Object_cnt].IDF)
     Work_canvas.add(oImg).setActiveObject(oImg);
     Work_Object_cnt = Work_Object_cnt + 1;
   });

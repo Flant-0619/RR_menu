@@ -11,10 +11,8 @@
     <!-- メニューバー -->
     <header>
       <from>
-        <input type = "button" value = "+" id = "addcanvas" onclick = "Call_Add_Canvas()">
-        <input type = "button" value = "-" id = "addcanvas" onclick = "Call_Remove_Canvas()">
         <select id = "pzoom" onchange="CallPCanvasZoomMethod(Work_canvas)">
-          <option value="kobetu" id = "kobe" disabled>フォント表示</option>
+          <option value="kobetu" id = "kobe" disabled>100%</option>
           <option value="50%" id = "font0">50%</option>
           <option value="75%" id = "font1">75%</option>
           <option value="100%" selected id = "font2">100%</option>
@@ -49,7 +47,7 @@
           </from>
           <h3 id="nomal">機能</h3></br>
           <from>
-            <input type = "image" value = "クリックして！" src = "twitter.png" onclick="CallCreateMethod('Twitter', Work_canvas, 'twitter.png')" width="50" height="50"></br>
+            <input type = "image" value = "クリックして！" src = "twitter.png" onclick="CallCreateMethod('Twitter', Work_canvas, 'twitter.png')" width="50" height="50">
             <input type = "image" value = "クリックして！" src = "instagram.png" onclick="CallCreateMethod('Twitter', Work_canvas, 'instagram.png')" width="50" height="50"></br>
           </from>
           <h3 id="nomal">テキスト</h3></br>
@@ -68,6 +66,8 @@
             <img type = "image" src = "img/No186.png" onclick = "CallCreateMethod('Twitter', Work_canvas, 'img/No186.png')">
             <img type = "image" src = "img/No187.png" onclick = "CallCreateMethod('Twitter', Work_canvas, 'img/No187.png')">
             <img type = "image" src = "img/No188.png" onclick = "CallCreateMethod('Twitter', Work_canvas, 'img/No188.png')">
+            <input type = "file" id = "example" multiple> 
+            <input type = "button" value = "Test" onclick="Test()">
             <!-- <div id = "preview"></div> -->
         </div>
         <div class="tab_content" id="design_content">
@@ -76,47 +76,113 @@
       </div>
     </aside>
     <!-- 編集ウィンドウ -->
-    <aside id="right">
-      <div class="edittabs">
-        <input id="editall" type="radio" name="edittab_item" checked>
-        <label class="edittab_item" for="editall">編集</label>
-        <input id="editprogramming" type="radio" name="edittab_item">
-        <label class="edittab_item" for="editprogramming">リンク設定</label>
-        <div class="edittab_content" id="editall_content">
+      <!-- 図形編集 -->
+      <div class="diagramedittabs" id="diagram_edit">
+        <input id="diagramedit" type="radio" name="diagramedittab_item" checked>
+        <label class="diagramedittab_item" for="diagramedit">編集</label>
+        <input id="diagramlink" type="radio" name="diagramedittab_item">
+        <label class="diagramedittab_item" for="diagramlink">リンク設定</label>
+        <div class="diagramedittab_content" id="diagramedit_content">
+          <from>
+            <div id="diagram">
+
+            </div>
+            <!-- <input type = "button" value = "Clone" onclick="CallCreateMethod('Clone', Work_canvas)"></br> -->
+          </from>
+        </div>
+        <div class="diagramedittab_content" id="diagramlink_content">
+          <from>
+            <div id="diagram_link">
+
+            </div>
+          </from>
+        </div>
+      </div>
+      <!-- 機能編集 -->
+      <div class="SNSedittabs" id="SNS_edit">
+        <input id="SNSedit" type="radio" name="SNSedittab_item" checked>
+        <label class="SNSedittab_item" for="SNSedit">編集</label>
+        <input id="SNStag" type="radio" name="SNSedittab_item">
+        <label class="SNSedittab_item" for="SNStag">タグ設定</label>
+        <div class="SNSedittab_content" id="SNSedit_content">
+          <from>
+            <div id="sns">
+
+            </div>
+            <!-- <input type = "button" value = "Clone" onclick="CallCreateMethod('Clone', Work_canvas)"></br> -->
+          </from>
+        </div>
+        <div class="SNSedittab_content" id="SNStag_content">
+          <from>
+            <div id="SNS_tag">
+
+            </div>
+          </from>
+        </div>
+      </div>
+      <!-- テキスト編集 -->
+      <div class="textedittabs" id="text_edit">
+        <input id="textedit" type="radio" name="textedittab_item" checked>
+        <label class="textedittab_item" for="textedit">編集</label>
+        <input id="textlink" type="radio" name="textedittab_item">
+        <label class="textedittab_item" for="textlink">リンク設定</label>
+        <div class="textedittab_content" id="textedit_content">
           <from>
             フォント:</br>
-            <input type = "button" value = "Text変更" onclick = "CallChangeFont(Work_canvas)"></br>
-            カラー:</br>
-            パーツの色:<input type = "color" id = "Diagram_color">
-            <input type = "button" value = "適用" onclick = "CallColorChange('Diagram', Work_canvas)">
-            </br>
-            フレーム色:<input type = "color" id = "Frame_color">
-            <input type = "button" value = "適用" onclick = "CallColorChange('Frame', Work_canvas)">
-            </br>
-            配　置:</br>
-            <input type = "button" value = "前面へ" onclick = "CallMovelayerMethod('Top', Work_canvas)">
-            <input type = "button" value = "背面へ" onclick = "CallMovelayerMethod('Bottom', Work_canvas)"></br>
-            x軸:<input type = "number" id = "position_left" value = "0" onfocus="this.select();"></br>
-            y軸:<input type = "number" id = "position_top" value = "0" onfocus="this.select();"></br>
-            <input type = "button" value = "適用" onclick = "Call_Position_Change(Work_canvas)"></br>
-            サイズ:</br>
-            横:<input type = "number" id = "obj_Width" value = "0" onfocus = "this.select();"></br>
-            縦:<input type = "number" id = "obj_Height" value = "0" onfocus="this.select();">
-            <input type = "button" value = "適用" onclick = "Call_Size_Change(Work_canvas)">
-            <input type = "button" value = "Clone"onclick="CallCreateMethod('Clone', Work_canvas)"></br>
-            <input type = "file" id = "example" multiple> 
-            <input type = "button" value = "Test" onclick="Test()">
+            <select id="fontSel" onchange="CallChangeFont()">
+              <option value="fkobetu" id = "fkobe" disabled selected>Times New Roman</option>
+              <option value="Arial" id = "Ar">Arial</option>
+              <option value="MS 明朝" id = "Ms">MS 明朝</option>
+              <option value="serif" id = "se">serif</option>
+              <option value="monospace" id = "mo">monospace</option>
+              <option value="HG行書体" id = "hg">HG行書体</option>
+              <option value="SimSun" id = "si">SimSun</option>
+              <option value="HG正楷書体-PRO" id = "hs">HG正楷書体-PRO</option>
+              <option value="ＭＳ Ｐゴシック" id = "msp">ＭＳ Ｐゴシック</option>
+              <option value="游ゴシック" id = "yu">游ゴシック</option>
+              <option value="Times New Roman" id = "ti">Times New Roman</option>
+            </select></br>
+            <div id="text">
+
+            </div>
+            <!-- <input type = "button" value = "Clone" onclick="CallCreateMethod('Clone', Work_canvas)"></br> -->
           </from>
         </div>
-        <div class="edittab_content" id="editprogramming_content">
+        <div class="textedittab_content" id="textlink_content">
           <from>
-            リンクの内容がここに入ります
-            <img type = "image" src = "orange_rect.png" id = "https://youtube.com" onclick="document.getElementById('URLBox').value = 'https://youtube.com'">
-            <input type = "text" id = "URLBox" value = "">
-            <input type = "button" value = "URLを設定する" onclick = "CallSettingMethod()">
+            <div id="text_link">
+            </div>
           </from>
         </div>
-    </aside>
+      </div>
+      <!-- 写真編集 -->
+      <div class="imgedittabs" id="img_edit">
+        <input id="imgedit" type="radio" name="imgedittab_item" checked>
+        <label class="imgedittab_item" for="imgedit">編集</label>
+        <input id="imglink" type="radio" name="imgedittab_item">
+        <label class="imgedittab_item" for="imglink">リンク設定</label>
+        <div class="imgedittab_content" id="imgedit_content">
+          <from>
+            <div id="img">
+
+            </div>
+            <!-- <input type = "button" value = "Clone" onclick="CallCreateMethod('Clone', Work_canvas)"></br> -->
+          </from>
+        </div>
+        <div class="imgedittab_content" id="imglink_content">
+          <from>
+            <div id="img_link"></div>
+
+            </div>
+          </from>
+        </div>
+      </div>
+      <script>
+        document.getElementById("diagram_edit").style.display ="none";
+        document.getElementById("text_edit").style.display ="none";
+        document.getElementById("SNS_edit").style.display ="none";
+        document.getElementById("img_edit").style.display ="none";
+      </script>
     <!-- キャンバス -->
     <div class="canvastabs">
       <script>
@@ -140,6 +206,10 @@
       <input id="canvas_input5" type="radio"  name="canvastab_item"
       onchange="Change_Work_Canvas(Work_Canvas_List[4])">
       <label class="canvastab_item" for="canvas_input5" id = "canvas_label5">キャンバス5</label>
+      <div id="aaa">
+        <input type = "button" value = "+" id = "addcanvas" onclick = "Call_Add_Canvas()">
+        <input type = "button" value = "-" id = "addcanvas2" disabled onclick = "Call_Remove_Canvas()">
+      </div>
       <div class="canvastab_content" id="canvas1_content">
         <canvas id="canvas1" width="600" height="600" style="border:1px solid;"></canvas>
       </div>

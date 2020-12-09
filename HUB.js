@@ -169,9 +169,156 @@ function CallColorChange(value, Work_canvas){
 }
 
 function CallChangeFont(Work_canvas){
-  CangeFont(Work_canvas);
+  ChangeFont(Work_canvas);
 }
 
 function Call_Size_Change(Work_canvas){
   Change_obj_size(Work_canvas);
+}
+
+function Call_edit_window(value, Work_canvas){
+  const diagram_edit = document.getElementById("diagram_edit");
+  const SNS_edit = document.getElementById("SNS_edit");
+  const text_edit = document.getElementById("text_edit");
+  const img_edit = document.getElementById("img_edit");
+  switch(value){
+    case 'diagram' :
+      console.log('図形編集ウィンドウ表示');
+      var document_value = document.getElementById('diagram');
+      var document_value_link = document.getElementById('diagram_link');
+      diagram.innerHTML = "";
+      diagram_link.innerHTML = "";
+      sns.innerHTML = "";
+      SNS_tag.innerHTML = "";
+      text.innerHTML = "";
+      text_link.innerHTML = "";
+      img.innerHTML = "";
+      img_link.innerHTML = "";
+      document_value.insertAdjacentHTML('afterbegin', `カラー:</br>
+      パーツの色:<input type = "color" id = "Diagram_color">
+      <input type = "button" value = "適用" onclick = "CallColorChange('Diagram', Work_canvas)">
+      </br>
+      フレーム色:<input type = "color" id = "Frame_color">
+      <input type = "button" value = "適用" onclick = "CallColorChange('Frame', Work_canvas)">
+      </br>
+      配　置:</br>
+      <input type = "button" value = "前面へ" onclick = "CallMovelayerMethod('Top', Work_canvas)">
+      <input type = "button" value = "背面へ" onclick = "CallMovelayerMethod('Bottom', Work_canvas)"></br>
+      x軸:<input type = "number" id = "position_left" value = "0" onfocus="this.select();"></br>
+      y軸:<input type = "number" id = "position_top" value = "0" onfocus="this.select();">
+      <input type = "button" value = "適用" onclick = "Call_Position_Change(Work_canvas)"></br>
+      サイズ:</br>
+      横:<input type = "number" id = "obj_Width" value = "0" onfocus="this.select();"></br>
+      縦:<input type = "number" id = "obj_Height" value = "0" onfocus="this.select();">
+      <input type = "button" value = "適用" onclick = "Call_Size_Change(Work_canvas)">`);
+      document_value_link.insertAdjacentHTML('afterbegin', `リンクの内容がここに入ります
+      <img type = "image" src = "orange_rect.png" id = "https://youtube.com" onclick="document.getElementById('URLBox').value = 'https://youtube.com'">
+      <input type = "text" id = "URLBox" value = "">
+      <input type = "button" value = "URLを設定する" onclick = "CallSettingMethod()">`);
+      diagram_edit.style.display ="block";
+      SNS_edit.style.display ="none";
+      text_edit.style.display ="none";
+      img_edit.style.display ="none";
+      break;
+    case 'SNS' :
+      console.log('機能編集ウィンドウ表示');
+      var document_value = document.getElementById('sns');
+      var document_value_tag = document.getElementById('SNS_tag');
+      diagram.innerHTML = "";
+      diagram_link.innerHTML = "";
+      sns.innerHTML = "";
+      SNS_tag.innerHTML = "";
+      text.innerHTML = "";
+      text_link.innerHTML = "";
+      img.innerHTML = "";
+      img_link.innerHTML = "";
+      document_value.insertAdjacentHTML('afterbegin', `配　置:</br>
+      <input type = "button" value = "前面へ" onclick = "CallMovelayerMethod('Top', Work_canvas)">
+      <input type = "button" value = "背面へ" onclick = "CallMovelayerMethod('Bottom', Work_canvas)"></br>
+      x軸:<input type = "number" id = "position_left" value = "0" onfocus="this.select();"></br>
+      y軸:<input type = "number" id = "position_top" value = "0" onfocus="this.select();">
+      <input type = "button" value = "適用" onclick = "Call_Position_Change(Work_canvas)"></br>
+      サイズ:</br>
+      横:<input type = "number" id = "obj_Width" value = "0" onfocus="this.select();"></br>
+      縦:<input type = "number" id = "obj_Height" value = "0" onfocus="this.select();">
+      <input type = "button" value = "適用" onclick = "Call_Size_Change(Work_canvas)">`)
+      document_value_tag.insertAdjacentHTML('afterbegin', `リンクの内容がここに入ります
+      <img type = "image" src = "orange_rect.png" id = "https://youtube.com" onclick="document.getElementById('URLBox').value = 'https://youtube.com'">
+      <input type = "text" id = "URLBox" value = "">
+      <input type = "button" value = "URLを設定する" onclick = "CallSettingMethod()">`)
+      diagram_edit.style.display ="none";
+      SNS_edit.style.display ="block";
+      text_edit.style.display ="none";
+      img_edit.style.display ="none";
+      break;
+    case 'Text' :
+      console.log('テキスト編集ウィンドウ表示');
+      var document_value = document.getElementById('text');
+      var document_value_link = document.getElementById('text_link');
+      diagram.innerHTML = "";
+      diagram_link.innerHTML = "";
+      sns.innerHTML = "";
+      SNS_tag.innerHTML = "";
+      text.innerHTML = "";
+      text_link.innerHTML = "";
+      img.innerHTML = "";
+      img_link.innerHTML = "";
+      document_value.insertAdjacentHTML('afterbegin', `カラー:</br>
+      パーツの色:<input type = "color" id = "Diagram_color">
+      <input type = "button" value = "適用" onclick = "CallColorChange('Diagram', Work_canvas)">
+      </br>
+      フレーム色:<input type = "color" id = "Frame_color">
+      <input type = "button" value = "適用" onclick = "CallColorChange('Frame', Work_canvas)">
+      </br>
+      配　置:</br>
+      <input type = "button" value = "前面へ" onclick = "CallMovelayerMethod('Top', Work_canvas)">
+      <input type = "button" value = "背面へ" onclick = "CallMovelayerMethod('Bottom', Work_canvas)"></br>
+      x軸:<input type = "number" id = "position_left" value = "0" onfocus="this.select();"></br>
+      y軸:<input type = "number" id = "position_top" value = "0" onfocus="this.select();">
+      <input type = "button" value = "適用" onclick = "Call_Position_Change(Work_canvas)"></br>
+      サイズ:</br>
+      横:<input type = "number" id = "obj_Width" value = "0" onfocus="this.select();"></br>
+      縦:<input type = "number" id = "obj_Height" value = "0" onfocus="this.select();">
+      <input type = "button" value = "適用" onclick = "Call_Size_Change(Work_canvas)">`)
+      document_value_link.insertAdjacentHTML('afterbegin', `リンクの内容がここに入ります
+      <img type = "image" src = "orange_rect.png" id = "https://youtube.com" onclick="document.getElementById('URLBox').value = 'https://youtube.com'">
+      <input type = "text" id = "URLBox" value = "">
+      <input type = "button" value = "URLを設定する" onclick = "CallSettingMethod()">`)
+      diagram_edit.style.display ="none";
+      SNS_edit.style.display ="none";
+      text_edit.style.display ="block";
+      img_edit.style.display ="none";
+      break;
+    case 'img' :
+      console.log('写真編集ウィンドウ表示');
+      var document_value_edit = document.getElementById('img');
+      var document_value_link = document.getElementById('img_link');
+      diagram.innerHTML = "";
+      diagram_link.innerHTML = "";
+      sns.innerHTML = "";
+      SNS_tag.innerHTML = "";
+      text.innerHTML = "";
+      text_link.innerHTML = "";
+      img.innerHTML = "";
+      img_link.innerHTML = "";
+      document_value_edit.insertAdjacentHTML('afterbegin', `配　置:</br>
+      <input type = "button" value = "前面へ" onclick = "CallMovelayerMethod('Top', Work_canvas)">
+      <input type = "button" value = "背面へ" onclick = "CallMovelayerMethod('Bottom', Work_canvas)"></br>
+      x軸:<input type = "number" id = "position_left" value = "0" onfocus="this.select();"></br>
+      y軸:<input type = "number" id = "position_top" value = "0" onfocus="this.select();">
+      <input type = "button" value = "適用" onclick = "Call_Position_Change(Work_canvas)"></br>
+      サイズ:</br>
+      横:<input type = "number" id = "obj_Width" value = "0" onfocus="this.select();"></br>
+      縦:<input type = "number" id = "obj_Height" value = "0" onfocus="this.select();">
+      <input type = "button" value = "適用" onclick = "Call_Size_Change(Work_canvas)">`)
+      document_value_link.insertAdjacentHTML('afterbegin', `リンクの内容がここに入ります
+      <img type = "image" src = "orange_rect.png" id = "https://youtube.com" onclick="document.getElementById('URLBox').value = 'https://youtube.com'">
+      <input type = "text" id = "URLBox" value = "">
+      <input type = "button" value = "URLを設定する" onclick = "CallSettingMethod()">`)
+      diagram_edit.style.display ="none";
+      SNS_edit.style.display ="none";
+      text_edit.style.display ="none";
+      img_edit.style.display ="block";
+      break;
+  }
 }

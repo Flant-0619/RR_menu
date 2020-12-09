@@ -61,6 +61,13 @@ function Save_SVG(Work_canvas){
     }
     j += 1;
   }*/
+  String_list.push(`<meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    svg{
+    width: 375px;
+    height: 667px;
+  }
+  </style>`)
   SaveData = String_list.join("");
   var blob = new Blob([SaveData],{type:"text/html"});
   var link = document.createElement('a');
