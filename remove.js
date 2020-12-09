@@ -18,16 +18,8 @@ function Remove_Object(Work_canvas){
 function Remove_All_Object(Work_canvas) {
   Work_undo.push(Work_canvas.toDatalessJSON());
   Work_redo = [];
-  var objects = Work_canvas.getObjects('rect');
-  for (let i in objects) {
-    Work_canvas.remove(objects[i]);
-  }
-  objects = Work_canvas.getObjects('circle');
-  for (let i in objects) {
-    Work_canvas.remove(objects[i]);
-  }
-  objects = Work_canvas.getObjects('itext');
-  for (let i in objects) {
-    Work_canvas.remove(objects[i]);
+  var tmp_Work_object = Work_canvas._objects.length;
+  for(var i = 0; i < tmp_Work_object; i++){
+    Work_canvas.remove(Work_canvas._objects[0])
   }
 }

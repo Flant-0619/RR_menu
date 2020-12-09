@@ -165,14 +165,10 @@ input[name="tab_item"] {
   background-color: gray;
   color: #fff;
 }
-/* 編集ウィンドウ */
-#right input{
-  margin-left: 5px;
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
+
+/* 図形 */
 /*タブ切り替え全体のスタイル*/
-.edittabs {
+.diagramedittabs {
   float: right;
   background-color: white;
   border: 2px solid black;
@@ -182,8 +178,14 @@ input[name="tab_item"] {
       top: 30px;
 }
 
+.diagramedittabs input{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+}
+
 /*タブのスタイル*/
-.edittab_item {
+.diagramedittab_item {
   width: 150px;
   height: 50px;
   border-bottom: 2px solid black;
@@ -198,17 +200,17 @@ input[name="tab_item"] {
   font-weight: bold;
   transition: all 0.2s ease;
 }
-.edittab_item:hover {
+.diagramedittab_item:hover {
   opacity: 0.75;
 }
 
 /*ラジオボタンを全て消す*/
-input[name="edittab_item"] {
+input[name="diagramedittab_item"] {
   display: none;
 }
 
 /*タブ切り替えの中身のスタイル*/
-.edittab_content {
+.diagramedittab_content {
   display: none;
   clear: both;
   max-height: 478px;
@@ -216,30 +218,262 @@ input[name="edittab_item"] {
   overflow-x: hidden;
 }
 /* スクロールバーデザイン */
-.edittab_content::-webkit-scrollbar {
+.diagramedittab_content::-webkit-scrollbar {
   width: 3px;
   height: 3px;
 }
-.edittab_content::-webkit-scrollbar-track {
+.diagramedittab_content::-webkit-scrollbar-track {
   border-radius: 5px;
   box-shadow: 0 0 4px #aaa inset;
 }
-.edittab_content::-webkit-scrollbar-thumb {
+.diagramedittab_content::-webkit-scrollbar-thumb {
   border-radius: 5px;
   background: gray;
 }
 
 /*選択されているタブのコンテンツのみを表示*/
-#editall:checked ~ #editall_content,
-#editprogramming:checked ~ #editprogramming_content{
+#diagramedit:checked ~ #diagramedit_content,
+#diagramlink:checked ~ #diagramlink_content{
   display: block;
 }
 
 /*選択されているタブのスタイルを変える*/
-.edittabs input:checked + .edittab_item {
+.diagramedittabs input:checked + .diagramedittab_item {
   background-color: gray;
   color: #fff;
 }
+
+/* 機能 */
+/*タブ切り替え全体のスタイル*/
+.SNSedittabs {
+  float: right;
+  background-color: white;
+  border: 2px solid black;
+  width: 300px;
+  height: 530px;
+  position: relative;
+      top: 30px;
+}
+
+.SNSedittabs input{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+}
+
+/*タブのスタイル*/
+.SNSedittab_item {
+  width: 150px;
+  height: 50px;
+  border-bottom: 2px solid black;
+  background-color: white;
+  line-height: 50px;
+  font-size: 16px;
+  text-align: center;
+  color: black;
+  display: block;
+  float: left;
+  text-align: center;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+.SNSedittab_item:hover {
+  opacity: 0.75;
+}
+
+/*ラジオボタンを全て消す*/
+input[name="SNSedittab_item"] {
+  display: none;
+}
+
+/*タブ切り替えの中身のスタイル*/
+.SNSedittab_content {
+  display: none;
+  clear: both;
+  max-height: 478px;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+/* スクロールバーデザイン */
+.SNSedittab_content::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
+.SNSedittab_content::-webkit-scrollbar-track {
+  border-radius: 5px;
+  box-shadow: 0 0 4px #aaa inset;
+}
+.SNSedittab_content::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background: gray;
+}
+
+/*選択されているタブのコンテンツのみを表示*/
+#SNSedit:checked ~ #SNSedit_content,
+#SNStag:checked ~ #SNStag_content{
+  display: block;
+}
+
+/*選択されているタブのスタイルを変える*/
+.SNSedittabs input:checked + .SNSedittab_item {
+  background-color: gray;
+  color: #fff;
+}
+
+/* テキスト */
+/*タブ切り替え全体のスタイル*/
+.textedittabs {
+  float: right;
+  background-color: white;
+  border: 2px solid black;
+  width: 300px;
+  height: 530px;
+  position: relative;
+      top: 30px;
+}
+
+.textedittabs input{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+}
+
+/*タブのスタイル*/
+.textedittab_item {
+  width: 150px;
+  height: 50px;
+  border-bottom: 2px solid black;
+  background-color: white;
+  line-height: 50px;
+  font-size: 16px;
+  text-align: center;
+  color: black;
+  display: block;
+  float: left;
+  text-align: center;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+.textedittab_item:hover {
+  opacity: 0.75;
+}
+
+/*ラジオボタンを全て消す*/
+input[name="textedittab_item"] {
+  display: none;
+}
+
+/*タブ切り替えの中身のスタイル*/
+.textedittab_content {
+  display: none;
+  clear: both;
+  max-height: 478px;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+/* スクロールバーデザイン */
+.textedittab_content::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
+.textedittab_content::-webkit-scrollbar-track {
+  border-radius: 5px;
+  box-shadow: 0 0 4px #aaa inset;
+}
+.textedittab_content::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background: gray;
+}
+
+/*選択されているタブのコンテンツのみを表示*/
+#textedit:checked ~ #textedit_content,
+#textlink:checked ~ #textlink_content{
+  display: block;
+}
+
+/*選択されているタブのスタイルを変える*/
+.textedittabs input:checked + .textedittab_item {
+  background-color: gray;
+  color: #fff;
+}
+
+/* 写真 */
+/*タブ切り替え全体のスタイル*/
+.imgedittabs {
+  float: right;
+  background-color: white;
+  border: 2px solid black;
+  width: 300px;
+  height: 530px;
+  position: relative;
+      top: 30px;
+}
+
+.imgedittabs input{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+}
+
+/*タブのスタイル*/
+.imgedittab_item {
+  width: 150px;
+  height: 50px;
+  border-bottom: 2px solid black;
+  background-color: white;
+  line-height: 50px;
+  font-size: 16px;
+  text-align: center;
+  color: black;
+  display: block;
+  float: left;
+  text-align: center;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+.imgedittab_item:hover {
+  opacity: 0.75;
+}
+
+/*ラジオボタンを全て消す*/
+input[name="imgedittab_item"] {
+  display: none;
+}
+
+/*タブ切り替えの中身のスタイル*/
+.imgedittab_content {
+  display: none;
+  clear: both;
+  max-height: 478px;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+/* スクロールバーデザイン */
+.imgedittab_content::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
+.imgedittab_content::-webkit-scrollbar-track {
+  border-radius: 5px;
+  box-shadow: 0 0 4px #aaa inset;
+}
+.imgedittab_content::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background: gray;
+}
+
+/*選択されているタブのコンテンツのみを表示*/
+#imgedit:checked ~ #imgedit_content,
+#imglink:checked ~ #imglink_content{
+  display: block;
+}
+
+/*選択されているタブのスタイルを変える*/
+.imgedittabs input:checked + .imgedittab_item {
+  background-color: gray;
+  color: #fff;
+}
+
 /* 共通 */
 #top {
   border-bottom: 2px solid black;
@@ -273,8 +507,19 @@ input {
   border: 2px solid #ced4da;
 }
 
-img {
+#aaa input{
+  padding: 20px 17px;
+  border-radius: 10px;
+  color: #495057;
+  border: 2px solid #ced4da;
+}
+#aaa input:checked {
+  background-color: gray;
+  color: #fff;
+}
+
+img{
   object-fit: cover;
-  width: 145px;
-  height: 100px;
+  width: 48%;
+  height: 48%;
 }
