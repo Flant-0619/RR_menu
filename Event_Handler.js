@@ -19,10 +19,10 @@ fabriccanvas1.on('selection:created', function(e) {
   //GetData(Work_canvas);
   //選択したオブジェクトの位置、サイズを取得&表示
   tmp_undo.push(Work_canvas.toDatalessJSON());
-  /*document.getElementById("position_left").value = Math.round(Select.left);
+  document.getElementById("position_left").value = Math.round(Select.left);
   document.getElementById("position_top").value = Math.round(Select.top);
   document.getElementById("obj_Width").value = Math.round(Select.width * Select.scaleX);
-  document.getElementById("obj_Height").value = Math.round(Select.height * Select.scaleY);*/
+  document.getElementById("obj_Height").value = Math.round(Select.height * Select.scaleY);
   //数値を入力してサイズの変更をして600の範囲を出た場合
   if((Select.left + Select.width * Select.scaleX) >= 600){
     Select.left = 600 - (Select.width * Select.scaleX);

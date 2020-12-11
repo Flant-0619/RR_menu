@@ -171,7 +171,6 @@ function Change_Work_Canvas(value){
     console.log(Work_canvas)
   }
 }
-
 function Change_Canvas_Name(){
   switch(Work_canvas){
     case fabriccanvas1:

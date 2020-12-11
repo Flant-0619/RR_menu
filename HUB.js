@@ -45,8 +45,16 @@ function CallSaveMethod(Work_canvas){
   }
 }
 
-function CallSettingMethod(){
-  URLSetting();
+function CallSettingMethod(value){
+  switch(value){
+    case "URL":
+      URLSetting();
+      break;
+
+    case "hashtag":
+      hashtagSetting();
+      break;
+  }
 }
 
 function CallRemoveMethod(value, Work_canvas){
@@ -224,7 +232,7 @@ function Call_edit_window(value, Work_canvas){
       document_value_link.insertAdjacentHTML('afterbegin', `リンクの内容がここに入ります
       <img type = "image" src = "orange_rect.png" id = "https://youtube.com" onclick="document.getElementById('URLBox').value = 'https://youtube.com'">
       <input type = "text" id = "URLBox" value = "">
-      <input type = "button" value = "URLを設定する" onclick = "CallSettingMethod()">`);
+      <input type = "button" value = "URLを設定する" onclick = "CallSettingMethod("URL")">`);
       diagram_edit.style.display ="block";
       SNS_edit.style.display ="none";
       text_edit.style.display ="none";
@@ -255,9 +263,8 @@ function Call_edit_window(value, Work_canvas){
       <input type = "button" value = "Copy" onclick="CallCreateMethod('Copy', Work_canvas)">
       <input type = "button" value = "Paste" onclick="CallCreateMethod('Paste', Work_canvas)">`)
       document_value_tag.insertAdjacentHTML('afterbegin', `リンクの内容がここに入ります
-      <img type = "image" src = "orange_rect.png" id = "https://youtube.com" onclick="document.getElementById('URLBox').value = 'https://youtube.com'">
-      <input type = "text" id = "URLBox" value = "">
-      <input type = "button" value = "URLを設定する" onclick = "CallSettingMethod()">`)
+      <input type = "text" id = "hashtagBox" value = "">
+      <input type = "button" value = "ハッシュタグを設定する" onclick = "CallSettingMethod('hashtag')">`)
       diagram_edit.style.display ="none";
       SNS_edit.style.display ="block";
       text_edit.style.display ="none";
@@ -297,7 +304,7 @@ function Call_edit_window(value, Work_canvas){
       document_value_link.insertAdjacentHTML('afterbegin', `リンクの内容がここに入ります
       <img type = "image" src = "orange_rect.png" id = "https://youtube.com" onclick="document.getElementById('URLBox').value = 'https://youtube.com'">
       <input type = "text" id = "URLBox" value = "">
-      <input type = "button" value = "URLを設定する" onclick = "CallSettingMethod()">`)
+      <input type = "button" value = "URLを設定する" onclick = "CallSettingMethod("URL")">`)
       diagram_edit.style.display ="none";
       SNS_edit.style.display ="none";
       text_edit.style.display ="block";
@@ -330,7 +337,7 @@ function Call_edit_window(value, Work_canvas){
       document_value_link.insertAdjacentHTML('afterbegin', `リンクの内容がここに入ります
       <img type = "image" src = "orange_rect.png" id = "https://youtube.com" onclick="document.getElementById('URLBox').value = 'https://youtube.com'">
       <input type = "text" id = "URLBox" value = "">
-      <input type = "button" value = "URLを設定する" onclick = "CallSettingMethod()">`)
+      <input type = "button" value = "URLを設定する" onclick = "CallSettingMethod("URL")">`)
       diagram_edit.style.display ="none";
       SNS_edit.style.display ="none";
       text_edit.style.display ="none";
