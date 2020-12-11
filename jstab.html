@@ -70,6 +70,7 @@
             <img type = "image" src = "img/No188.png" onclick = "CallCreateMethod('Twitter', Work_canvas, 'img/No188.png')">
             <input type = "file" id = "example" multiple> 
             <input type = "button" value = "Test" onclick="Test()">
+            </br><input type = "file" value = "写真アップロード" style = "width:100%; padding:10px; font-size: 15px;">
             <!-- <div id = "preview"></div> -->
         </div>
         <div class="tab_content" id="design_content">
@@ -312,6 +313,9 @@
             }
             Work_canvas.add(Work_Object_list[Work_Object_cnt]);
             Work_canvas.renderAll();
+            Work_tmp_propaty_list.push(null);
+            Work_tmp_propaty_list.push(Work_Object_list[Work_Object_cnt].name)
+            Work_tmp_propaty_list.push(Work_Object_list[Work_Object_cnt].IDF)
             Work_Object_cnt += 1;
             console.log(Work_Object_cnt);
           }

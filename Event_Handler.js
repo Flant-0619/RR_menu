@@ -181,9 +181,9 @@ fabriccanvas1.on('object:rotating', function(options){
 });
 
 //パーツウィンドウからd&dでキャンバスに表示(未完成)
-fabriccanvas1.on('drop', function(options){
-    CallCreateMethod('Rect', fabriccanvas1);
-});
+// fabriccanvas1.on('drop', function(options){
+//     CallCreateMethod('Rect', fabriccanvas1);
+// });
 
 //数値を入力してサイズの変更をして600の範囲を出た場合
 fabriccanvas1.on('selection:cleared', function(options){
@@ -254,9 +254,13 @@ fabriccanvas1.on('object:scaled', function(options){
     console.log(Select.top);
   }
   if(Select.left + (Select.width * Select.scaleX) >= 600){
-      //右
-      options.target.set({left:600 - (Select.width * Select.scaleX)});
-    }
+    //右
+    options.target.set({left:600 - (Select.width * Select.scaleX)});
+  }
+  if(Select.top + (Select.height * Select.scaleY) >= 600){
+    //下
+    options.target.set({top:600 - (Select.height * Select.scaleY)});
+  }
 });
 
 fabriccanvas2.on('mouse:up', function (e) {
@@ -442,9 +446,9 @@ fabriccanvas2.on('object:rotating', function(options){
 });
 
 //パーツウィンドウからd&dでキャンバスに表示(未完成)
-fabriccanvas2.on('drop', function(options){
-    CallCreateMethod('Rect', fabriccanvas2);
-});
+// fabriccanvas2.on('drop', function(options){
+//     CallCreateMethod('Rect', fabriccanvas2);
+// });
 
 //数値を入力してサイズの変更をして600の範囲を出た場合
 fabriccanvas2.on('selection:cleared', function(options){
@@ -515,9 +519,13 @@ fabriccanvas2.on('object:scaled', function(options){
     console.log(Select.top);
   }
   if(Select.left + (Select.width * Select.scaleX) >= 600){
-      //右
-      options.target.set({left:600 - (Select.width * Select.scaleX)});
-    }
+    //右
+    options.target.set({left:600 - (Select.width * Select.scaleX)});
+  }
+  if(Select.top + (Select.height * Select.scaleY) >= 600){
+    //下
+    options.target.set({top:600 - (Select.height * Select.scaleY)});
+  }
 });
 
 fabriccanvas3.on('mouse:up', function (e) {
@@ -703,9 +711,9 @@ fabriccanvas3.on('object:rotating', function(options){
 });
 
 //パーツウィンドウからd&dでキャンバスに表示(未完成)
-fabriccanvas3.on('drop', function(options){
-    CallCreateMethod('Rect', fabriccanvas3);
-});
+// fabriccanvas3.on('drop', function(options){
+//     CallCreateMethod('Rect', fabriccanvas3);
+// });
 
 //数値を入力してサイズの変更をして600の範囲を出た場合
 fabriccanvas3.on('selection:cleared', function(options){
@@ -776,9 +784,13 @@ fabriccanvas3.on('object:scaled', function(options){
     console.log(Select.top);
   }
   if(Select.left + (Select.width * Select.scaleX) >= 600){
-      //右
-      options.target.set({left:600 - (Select.width * Select.scaleX)});
-    }
+    //右
+    options.target.set({left:600 - (Select.width * Select.scaleX)});
+  }
+  if(Select.top + (Select.height * Select.scaleY) >= 600){
+    //下
+    options.target.set({top:600 - (Select.height * Select.scaleY)});
+  }
 });
 
 fabriccanvas4.on('mouse:up', function (e) {
@@ -964,9 +976,9 @@ fabriccanvas4.on('object:rotating', function(options){
 });
 
 //パーツウィンドウからd&dでキャンバスに表示(未完成)
-fabriccanvas4.on('drop', function(options){
-    CallCreateMethod('Rect', fabriccanvas4);
-});
+// fabriccanvas4.on('drop', function(options){
+//     CallCreateMethod('Rect', fabriccanvas4);
+// });
 
 //数値を入力してサイズの変更をして600の範囲を出た場合
 fabriccanvas4.on('selection:cleared', function(options){
@@ -1037,9 +1049,13 @@ fabriccanvas4.on('object:scaled', function(options){
     console.log(Select.top);
   }
   if(Select.left + (Select.width * Select.scaleX) >= 600){
-      //右
-      options.target.set({left:600 - (Select.width * Select.scaleX)});
-    }
+    //右
+    options.target.set({left:600 - (Select.width * Select.scaleX)});
+  }
+  if(Select.top + (Select.height * Select.scaleY) >= 600){
+    //下
+    options.target.set({top:600 - (Select.height * Select.scaleY)});
+  }
 });
 
 fabriccanvas5.on('mouse:up', function (e) {
@@ -1225,9 +1241,9 @@ fabriccanvas5.on('object:rotating', function(options){
 });
 
 //パーツウィンドウからd&dでキャンバスに表示(未完成)
-fabriccanvas5.on('drop', function(options){
-    CallCreateMethod('Rect', fabriccanvas5);
-});
+// fabriccanvas5.on('drop', function(options){
+//     CallCreateMethod('Rect', fabriccanvas5);
+// });
 
 //数値を入力してサイズの変更をして600の範囲を出た場合
 fabriccanvas5.on('selection:cleared', function(options){
@@ -1298,8 +1314,12 @@ fabriccanvas5.on('object:scaled', function(options){
     console.log(Select.top);
   }
   if(Select.left + (Select.width * Select.scaleX) >= 600){
-      //右
-      options.target.set({left:600 - (Select.width * Select.scaleX)});
-    }
+    //右
+    options.target.set({left:600 - (Select.width * Select.scaleX)});
+  }
+  if(Select.top + (Select.height * Select.scaleY) >= 600){
+    //下
+    options.target.set({top:600 - (Select.height * Select.scaleY)});
+  }
 });
 

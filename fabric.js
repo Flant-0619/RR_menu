@@ -20461,7 +20461,7 @@ fabric.util.object.extend(fabric.Object.prototype, /** @lends fabric.Object.prot
         '" height="', element.height || element.height,
         imageRendering,
         '"', clipPath,
-        'id="',this.id,'"></image>\n');
+        ' id="',this.id,'"></image>\n');
       if (this.stroke || this.strokeDashArray) {
         var origFill = this.fill;
         this.fill = null;
