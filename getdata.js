@@ -11,6 +11,9 @@ function GetData(Work_canvas){
 function GetData(Work_canvas){
   Select = Work_canvas.getActiveObject();
   Call_edit_window(Select.IDF, Work_canvas)
+  console.log(Select.IDF)
+  console.log(Select.id)
+  console.log(Select.name)
 }
 
 function NotData(Work_canvas){

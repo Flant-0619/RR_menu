@@ -119,6 +119,45 @@ function CreateTwitter(Work_canvas, img_name){
   });
 }
 
+function CreateCopy(){
+  Work_canvas.getActiveObject().clone(function(cloned) {
+		_clipboard = cloned;
+	});
+}
+
+function CreatePaste() {
+	// clone again, so you can do multiple copies.
+	_clipboard.clone(function(clonedObj) {
+		Work_canvas.discardActiveObject();
+		clonedObj.set({
+			left: clonedObj.left + 10,
+      top: clonedObj.top + 10,
+      id:Select.id,
+      name:Select.name,
+      IDF:Select.IDF,
+			evented: true,
+    });
+    Work_tmp_propaty_list.push(clonedObj.id);
+    Work_tmp_propaty_list.push(clonedObj.name);
+    Work_tmp_propaty_list.push(clonedObj.IDF);
+		if (clonedObj.type === 'activeSelection') {
+			// active selection needs a reference to the canvas.
+			clonedObj.canvas = canvasA;
+			clonedObj.forEachObject(function(obj) {
+				Work_canvas.add(obj);
+			});
+			// this should solve the unselectability
+			clonedObj.setCoords();
+		} else {
+			Work_canvas.add(clonedObj);
+		}
+		_clipboard.top += 10;
+		_clipboard.left += 10;
+		Work_canvas.setActiveObject(clonedObj);
+		Work_canvas.requestRenderAll();
+	});
+}
+
 /*function CreateTwitter(Work_canvas){
   Object_list[Object_cnt] = new fabric.Image.fromURL('twitter.png',function(oImg){
     oImg.set({id: Object_cnt, left:80, top:80, snapAngle: 5});

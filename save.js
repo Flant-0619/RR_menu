@@ -2,12 +2,14 @@ var SaveData;
 var String_list = [];
 var result1 = 0;
 function Save_SVG(Work_canvas){
+  Work_canvas.discardActiveObject();
+  Work_canvas.renderAll();
   SaveData = Work_canvas.toSVG();
   var fname = prompt("ファイル名を入力してください");
-  var blob = new Blob([SaveData],{type:"image/png"});
+  var blob = new Blob([SaveData],{type:"svg"});
   var link = document.createElement('a');
   link.href = URL.createObjectURL(blob);
-  link.download = 'メニュー10.png';
+  link.download = 'メニュー10.svg';
   link.click();
 
   var result1 = SaveData.indexOf("<g");
@@ -28,10 +30,6 @@ function Save_SVG(Work_canvas){
   result5 = SaveData.indexOf("</svg>")
   String_list.push(SaveData.substr(result5));
   var j = 1;
-  console.log(String_list);
-  console.log(cnt);
-  console.log(count)
-  console.log(Work_canvas)
   //console.log(count + remove_Object_cnt.length);
   for(let i in Work_canvas._objects){
     
@@ -75,4 +73,14 @@ function Save_SVG(Work_canvas){
   link.download = 'メニュー10.html';
   link.click();
   String_list = [];
+
+  var canvas = document.getElementById(Work_canvas_id);
+	//アンカータグを作成
+	var a = document.createElement('a');
+	//canvasをJPEG変換し、そのBase64文字列をhrefへセット
+	a.href = canvas.toDataURL('image/png', 0.85);
+	//ダウンロード時のファイル名を指定
+	a.download = 'download.png';
+	//クリックイベントを発生させる
+	a.click();
 }

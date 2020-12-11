@@ -19,6 +19,14 @@ function CallCreateMethod(value, Work_canvas, img_name){
     case 'Clone':
       CreateClone(Work_canvas);
       break;
+
+    case 'Copy':
+      CreateCopy(Work_canvas);
+      break;
+    
+    case 'Paste':
+      CreatePaste(Work_canvas);
+      break;
   }
   if(Work_undo.length != 0){
     elem8.disabled = false;
@@ -210,7 +218,9 @@ function Call_edit_window(value, Work_canvas){
       サイズ:</br>
       横:<input type = "number" id = "obj_Width" value = "0" onfocus="this.select();"></br>
       縦:<input type = "number" id = "obj_Height" value = "0" onfocus="this.select();">
-      <input type = "button" value = "適用" onclick = "Call_Size_Change(Work_canvas)">`);
+      <input type = "button" value = "適用" onclick = "Call_Size_Change(Work_canvas)">
+      <input type = "button" value = "Copy" onclick="CallCreateMethod('Copy', Work_canvas)">
+      <input type = "button" value = "Paste" onclick="CallCreateMethod('Paste', Work_canvas)">`);
       document_value_link.insertAdjacentHTML('afterbegin', `リンクの内容がここに入ります
       <img type = "image" src = "orange_rect.png" id = "https://youtube.com" onclick="document.getElementById('URLBox').value = 'https://youtube.com'">
       <input type = "text" id = "URLBox" value = "">
@@ -241,7 +251,9 @@ function Call_edit_window(value, Work_canvas){
       サイズ:</br>
       横:<input type = "number" id = "obj_Width" value = "0" onfocus="this.select();"></br>
       縦:<input type = "number" id = "obj_Height" value = "0" onfocus="this.select();">
-      <input type = "button" value = "適用" onclick = "Call_Size_Change(Work_canvas)">`)
+      <input type = "button" value = "適用" onclick = "Call_Size_Change(Work_canvas)">
+      <input type = "button" value = "Copy" onclick="CallCreateMethod('Copy', Work_canvas)">
+      <input type = "button" value = "Paste" onclick="CallCreateMethod('Paste', Work_canvas)">`)
       document_value_tag.insertAdjacentHTML('afterbegin', `リンクの内容がここに入ります
       <img type = "image" src = "orange_rect.png" id = "https://youtube.com" onclick="document.getElementById('URLBox').value = 'https://youtube.com'">
       <input type = "text" id = "URLBox" value = "">
@@ -279,7 +291,9 @@ function Call_edit_window(value, Work_canvas){
       サイズ:</br>
       横:<input type = "number" id = "obj_Width" value = "0" onfocus="this.select();"></br>
       縦:<input type = "number" id = "obj_Height" value = "0" onfocus="this.select();">
-      <input type = "button" value = "適用" onclick = "Call_Size_Change(Work_canvas)">`)
+      <input type = "button" value = "適用" onclick = "Call_Size_Change(Work_canvas)">
+      <input type = "button" value = "Copy" onclick="CallCreateMethod('Copy', Work_canvas)">
+      <input type = "button" value = "Paste" onclick="CallCreateMethod('Paste', Work_canvas)">`)
       document_value_link.insertAdjacentHTML('afterbegin', `リンクの内容がここに入ります
       <img type = "image" src = "orange_rect.png" id = "https://youtube.com" onclick="document.getElementById('URLBox').value = 'https://youtube.com'">
       <input type = "text" id = "URLBox" value = "">
@@ -310,7 +324,9 @@ function Call_edit_window(value, Work_canvas){
       サイズ:</br>
       横:<input type = "number" id = "obj_Width" value = "0" onfocus="this.select();"></br>
       縦:<input type = "number" id = "obj_Height" value = "0" onfocus="this.select();">
-      <input type = "button" value = "適用" onclick = "Call_Size_Change(Work_canvas)">`)
+      <input type = "button" value = "適用" onclick = "Call_Size_Change(Work_canvas)">
+      <input type = "button" value = "Copy" onclick="CallCreateMethod('Copy', Work_canvas)">
+      <input type = "button" value = "Paste" onclick="CallCreateMethod('Paste', Work_canvas)">`)
       document_value_link.insertAdjacentHTML('afterbegin', `リンクの内容がここに入ります
       <img type = "image" src = "orange_rect.png" id = "https://youtube.com" onclick="document.getElementById('URLBox').value = 'https://youtube.com'">
       <input type = "text" id = "URLBox" value = "">

@@ -74,6 +74,15 @@ input[name="canvastab_item"] {
 #canvas_input5,#canvas_label5{
   visibility:hidden;
 }
+#canvas_label1,
+#canvas_label2,
+#canvas_label3,
+#canvas_label4,
+#canvas_label5{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 /*選択されているタブのスタイルを変える*/
 .canvastabs input:checked + .canvastab_item {

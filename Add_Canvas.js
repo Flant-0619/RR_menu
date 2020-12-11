@@ -2,6 +2,7 @@ var cnt = 2;
 var cnt_box = [];
 var elem10 = document.getElementById("addcanvas");
 var elem11 = document.getElementById("addcanvas2");
+var Work_canvas_id = "canvas1";
 function add_canvas(){
   elem11.disabled = false;
   cnt_box.push(cnt);
@@ -47,6 +48,7 @@ function Change_Work_Canvas(value){
     Work_canvas = value;
     Work_undo = canvas1_undo;
     Work_redo = canvas1_redo;
+    Work_canvas_id = "canvas1";
     if (Work_undo.length == 0){
       elem8.disabled = true;
     }else{
@@ -71,6 +73,7 @@ function Change_Work_Canvas(value){
     Work_canvas = value;
     Work_undo = canvas2_undo;
     Work_redo = canvas2_redo;
+    Work_canvas_id = "canvas2";
     if (Work_undo.length == 0){
       elem8.disabled = true;
     }else{
@@ -95,6 +98,7 @@ function Change_Work_Canvas(value){
     Work_canvas = value;
     Work_undo = canvas3_undo;
     Work_redo = canvas3_redo;
+    Work_canvas_id = "canvas3";
     if (Work_undo.length == 0){
       elem8.disabled = true;
     }else{
@@ -119,6 +123,7 @@ function Change_Work_Canvas(value){
     Work_canvas = value;
     Work_undo = canvas4_undo;
     Work_redo = canvas4_redo;
+    Work_canvas_id = "canvas4";
     if (Work_undo.length == 0){
       elem8.disabled = true;
     }else{
@@ -143,6 +148,7 @@ function Change_Work_Canvas(value){
     Work_canvas = value;
     Work_undo = canvas5_undo;
     Work_redo = canvas5_redo;
+    Work_canvas_id = "canvas5";
     if (Work_undo.length == 0){
       elem8.disabled = true;
     }else{
@@ -166,3 +172,29 @@ function Change_Work_Canvas(value){
   }
 }
 
+function Change_Canvas_Name(){
+  switch(Work_canvas){
+    case fabriccanvas1:
+      var canvas_n = "canvas_label1";
+      break;
+
+    case fabriccanvas2:
+      var canvas_n = "canvas_label2";
+    break;
+
+    case fabriccanvas3:
+      var canvas_n = "canvas_label3";
+    break;
+
+    case fabriccanvas4:
+      var canvas_n = "canvas_label4";
+    break;
+
+    case fabriccanvas5:
+      var canvas_n = "canvas_label5";
+    break;
+  }
+  var canvas_tlabel = document.getElementById(canvas_n);
+  var canvas_name = document.getElementById("CanName").value;
+  canvas_tlabel.innerHTML = canvas_name;
+}
